@@ -3,12 +3,9 @@
 
 <head>
   <meta charset="UTF-8">
-
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <title>Happy Birthday — A Little Book For You</title>
-
   <meta name="theme-color" content="#f59ab8">
 
   <style>
@@ -21,7 +18,6 @@
     :root {
       --ink: #5c3150;
       --paper: #fffafc;
-      --pink: #f59ab8;
     }
 
     html,
@@ -38,12 +34,12 @@
       background:
         radial-gradient(
           circle at 15% 15%,
-          rgba(255,255,255,.55),
+          rgba(255, 255, 255, .55),
           transparent 22%
         ),
         radial-gradient(
           circle at 85% 80%,
-          rgba(255,255,255,.35),
+          rgba(255, 255, 255, .35),
           transparent 24%
         ),
         linear-gradient(
@@ -87,7 +83,7 @@
       opacity: 0;
       animation: floatUp linear forwards;
       filter: drop-shadow(
-        0 3px 7px rgba(117,35,78,.15)
+        0 3px 7px rgba(117, 35, 78, .15)
       );
     }
 
@@ -103,7 +99,7 @@
     @keyframes floatUp {
       0% {
         transform:
-          translate3d(0,0,0)
+          translate3d(0, 0, 0)
           rotate(0deg)
           scale(.75);
         opacity: 0;
@@ -126,7 +122,6 @@
           )
           rotate(var(--rot))
           scale(1.2);
-
         opacity: 0;
       }
     }
@@ -138,15 +133,15 @@
 
     .topbar {
       position: relative;
-      z-index: 100;
+      z-index: 10;
 
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
 
-      padding: 15px 18px 7px;
+      padding: 16px 18px 8px;
 
-      max-width: 1000px;
+      max-width: 980px;
       margin: auto;
 
       color: white;
@@ -158,14 +153,14 @@
       font-weight: 700;
 
       text-shadow:
-        0 2px 8px rgba(102,29,66,.18);
+        0 2px 8px rgba(102, 29, 66, .18);
     }
 
     .music-btn {
-      border: 1px solid rgba(255,255,255,.6);
+      border: 1px solid rgba(255, 255, 255, .6);
 
       background:
-        rgba(255,255,255,.18);
+        rgba(255, 255, 255, .18);
 
       color: white;
 
@@ -189,7 +184,7 @@
       position: relative;
       z-index: 2;
 
-      height: calc(100vh - 68px);
+      height: calc(100vh - 70px);
 
       display: flex;
       flex-direction: column;
@@ -197,33 +192,27 @@
       align-items: center;
       justify-content: center;
 
-      padding:
-        8px 14px 30px;
-    }
-
-
-    /* =========================
-       BOOK WRAPPER
-    ========================== */
-
-    .book-wrap {
-      position: relative;
-
-      width: min(94vw, 820px);
-
-      height: min(68vh, 540px);
-
-      min-height: 360px;
-
-      perspective: 2200px;
-
-      flex-shrink: 0;
+      padding: 8px 16px 30px;
     }
 
 
     /* =========================
        BOOK
     ========================== */
+
+    .book-wrap {
+      width: min(88vw, 420px);
+
+      height: min(78vh, 560px);
+
+      aspect-ratio: 3 / 4;
+
+      perspective: 1800px;
+
+      position: relative;
+
+      flex-shrink: 0;
+    }
 
     .book {
       position: relative;
@@ -235,84 +224,45 @@
 
       filter:
         drop-shadow(
-          0 25px 35px rgba(88,29,67,.28)
+          0 25px 35px
+          rgba(88, 29, 67, .25)
         );
-    }
-
-
-    /*
-      Bagian kiri dan kanan buku.
-      Garis tengah menjadi spine.
-    */
-
-    .book::before {
-      content: "";
-
-      position: absolute;
-
-      top: 0;
-      bottom: 0;
-      left: 50%;
-
-      width: 3px;
-
-      transform:
-        translateX(-50%);
-
-      background:
-        linear-gradient(
-          to right,
-          rgba(93,40,67,.20),
-          rgba(255,255,255,.55),
-          rgba(93,40,67,.12)
-        );
-
-      z-index: 50;
-
-      pointer-events: none;
     }
 
 
     /* =========================
-       PAGE
+       ORIGINAL 3D PAGE
     ========================== */
 
     .page {
       position: absolute;
 
-      top: 0;
-      right: 0;
-
-      width: 50%;
-      height: 100%;
-
-      transform-origin: left center;
+      inset: 0;
 
       transform-style: preserve-3d;
 
+      transform-origin: left center;
+
       transition:
-        transform .9s
-        cubic-bezier(.2,.75,.2,1);
+        transform .85s
+        cubic-bezier(.2, .75, .2, 1);
 
       border-radius:
-        0 14px 14px 0;
+        9px 15px 15px 9px;
+
+      box-shadow:
+        0 7px 20px
+        rgba(82, 28, 61, .18);
 
       cursor: pointer;
 
-      /*
-        Jangan gunakan overflow:hidden
-        pada elemen flip utamanya.
-      */
       overflow: visible;
 
+      /*
+        Penting untuk efek 3D.
+      */
       backface-visibility: visible;
     }
-
-
-    /*
-      Halaman yang sudah dibuka:
-      bergerak dari kanan ke kiri.
-    */
 
     .page.flipped {
       transform:
@@ -321,47 +271,33 @@
 
 
     /* =========================
-       FRONT / BACK
+       FRONT & BACK
     ========================== */
 
-    .page-face {
+    .page .front,
+    .page .back {
       position: absolute;
 
       inset: 0;
 
-      width: 100%;
-      height: 100%;
-
-      overflow: hidden;
+      transform-style: preserve-3d;
 
       backface-visibility: hidden;
 
-      transform-style: preserve-3d;
+      overflow: hidden;
 
-      border: 1px solid
-        rgba(117,55,91,.16);
+      border-radius: inherit;
 
-      background:
-        #fffafc;
+      background: var(--paper);
 
-      box-shadow:
-        0 5px 18px
-        rgba(82,28,61,.16);
+      border:
+        1px solid
+        rgba(117, 55, 91, .16);
     }
 
-
-    .front {
-      border-radius:
-        0 14px 14px 0;
-    }
-
-
-    .back {
+    .page .back {
       transform:
         rotateY(180deg);
-
-      border-radius:
-        14px 0 0 14px;
 
       background:
         linear-gradient(
@@ -370,34 +306,6 @@
           #fff7fa 58%,
           #fdeef5
         );
-
-      /*
-        Bagian belakang halaman
-        dibuat solid.
-      */
-      opacity: 1;
-    }
-
-
-    /*
-      Sedikit efek garis-garis kertas
-      di halaman belakang.
-    */
-
-    .back::after {
-      content: "";
-
-      position: absolute;
-
-      inset: 10px;
-
-      border-radius: 6px;
-
-      border:
-        1px solid
-        rgba(170,91,125,.08);
-
-      pointer-events: none;
     }
 
 
@@ -419,7 +327,7 @@
       background:
         radial-gradient(
           circle at 8% 12%,
-          rgba(255,187,207,.28),
+          rgba(255, 187, 207, .28),
           transparent 25%
         ),
         linear-gradient(
@@ -440,17 +348,16 @@
 
       flex-direction: column;
 
-      align-items: center;
       justify-content: center;
 
-      text-align: center;
+      align-items: center;
 
-      color: white;
+      text-align: center;
 
       background:
         radial-gradient(
           circle at 50% 30%,
-          rgba(255,255,255,.6),
+          rgba(255, 255, 255, .6),
           transparent 25%
         ),
         linear-gradient(
@@ -458,24 +365,26 @@
           #ffd6e7 0%,
           #ffadc9 52%,
           #f783b2 100%
-        );
+        ) !important;
+
+      color: white;
     }
 
     .cover .mini {
-      font-size: 11px;
+      font-size: 12px;
 
-      letter-spacing: 2.5px;
+      letter-spacing: 3px;
 
       text-transform: uppercase;
 
-      opacity: .88;
+      opacity: .85;
     }
 
     .cover h1 {
       font-family: Caveat, cursive;
 
       font-size:
-        clamp(42px,7vw,65px);
+        clamp(42px, 12vw, 58px);
 
       line-height: .9;
 
@@ -484,20 +393,18 @@
 
       text-shadow:
         0 3px 12px
-        rgba(91,28,63,.28);
+        rgba(91, 28, 63, .28);
     }
 
     .cover p {
-      width: 82%;
-
-      max-width: 270px;
-
-      font-size: 12px;
+      max-width: 260px;
 
       line-height: 1.55;
+
+      font-size: 14px;
     }
 
-    .big-heart {
+    .cover .big-heart {
       font-size: 62px;
 
       animation:
@@ -517,7 +424,7 @@
 
       border:
         1px solid
-        rgba(255,255,255,.5);
+        rgba(255, 255, 255, .5);
 
       border-radius: 8px;
 
@@ -526,13 +433,24 @@
 
 
     /* =========================
-       CONTENT
+       TEXT
     ========================== */
 
-    .kicker {
-      font-size: 10px;
+    .page-number {
+      position: absolute;
 
-      letter-spacing: 1.8px;
+      bottom: 12px;
+      right: 16px;
+
+      font-size: 11px;
+
+      opacity: .55;
+    }
+
+    .kicker {
+      font-size: 11px;
+
+      letter-spacing: 2px;
 
       text-transform: uppercase;
 
@@ -545,24 +463,24 @@
       font-family: Caveat, cursive;
 
       font-size:
-        clamp(28px,4.5vw,40px);
+        clamp(30px, 8vw, 40px);
 
       line-height: 1;
 
       margin:
-        7px 0 6px;
+        7px 0 4px;
 
       color: #7b3d62;
     }
 
     .subtitle {
-      font-size: 11px;
+      font-size: 12px;
 
       line-height: 1.55;
 
       opacity: .72;
 
-      margin-bottom: 13px;
+      margin-bottom: 14px;
     }
 
 
@@ -577,21 +495,21 @@
 
       width: fit-content;
 
-      max-width: 88%;
+      max-width: 82%;
 
       margin:
         8px auto 15px;
 
       padding:
-        8px 8px 25px;
+        9px 9px 27px;
 
-      background: white;
+      background: #fff;
 
       border-radius: 3px;
 
       box-shadow:
         0 9px 18px
-        rgba(81,33,60,.2);
+        rgba(81, 33, 60, .2);
 
       transform:
         rotate(-1.2deg);
@@ -606,7 +524,7 @@
       max-width: 100%;
 
       max-height:
-        min(38vh,285px);
+        clamp(180px, 38vh, 300px);
 
       object-fit: contain;
 
@@ -618,7 +536,7 @@
 
       font-family: Caveat, cursive;
 
-      font-size: 21px;
+      font-size: 23px;
 
       color: #7b3d62;
 
@@ -633,24 +551,24 @@
     .pin {
       position: absolute;
 
-      top: -17px;
+      top: -19px;
       left: 50%;
 
       transform:
         translateX(-50%)
         rotate(2deg);
 
-      width: 29px;
-      height: 29px;
+      width: 31px;
+      height: 31px;
 
       background: white;
 
-      z-index: 5;
+      z-index: 4;
 
       filter:
         drop-shadow(
           0 3px 4px
-          rgba(0,0,0,.18)
+          rgba(0, 0, 0, .18)
         );
     }
 
@@ -667,7 +585,7 @@
 
       color: #f2b7ca;
 
-      font-size: 17px;
+      font-size: 18px;
     }
 
     .pin::after {
@@ -676,12 +594,12 @@
       position: absolute;
 
       width: 4px;
-      height: 8px;
+      height: 9px;
 
       background: #ddd;
 
       left: 50%;
-      top: 25px;
+      top: 26px;
 
       transform:
         translateX(-50%);
@@ -699,9 +617,9 @@
         5px auto 0;
 
       padding:
-        8px 10px;
+        9px 11px;
 
-      background: white;
+      background: #fff;
 
       border-left:
         3px solid #eea1bc;
@@ -710,22 +628,75 @@
 
       box-shadow:
         0 5px 12px
-        rgba(90,35,68,.08);
+        rgba(90, 35, 68, .08);
 
-      font-size: 10px;
+      font-size: 11px;
 
       line-height: 1.45;
     }
 
-    .page-number {
+
+    /* =========================
+       CONTROLS
+    ========================== */
+
+    .page-controls {
       position: absolute;
 
-      right: 15px;
-      bottom: 10px;
+      left: 50%;
 
-      font-size: 10px;
+      bottom: -54px;
 
-      opacity: .5;
+      transform:
+        translateX(-50%);
+
+      z-index: 30;
+
+      display: flex;
+
+      gap: 10px;
+
+      white-space: nowrap;
+    }
+
+    .ctrl {
+      border: 0;
+
+      background:
+        rgba(255, 255, 255, .82);
+
+      color: #743a5d;
+
+      border-radius: 999px;
+
+      padding:
+        9px 14px;
+
+      box-shadow:
+        0 5px 14px
+        rgba(82, 29, 61, .16);
+
+      cursor: pointer;
+
+      font-weight: 700;
+    }
+
+    .ctrl:disabled {
+      opacity: .45;
+
+      cursor: default;
+    }
+
+    .hint {
+      color: white;
+
+      font-size: 12px;
+
+      opacity: .85;
+
+      margin-top: 70px;
+
+      text-align: center;
     }
 
 
@@ -734,9 +705,9 @@
     ========================== */
 
     .letter {
-      position: absolute;
+      height: 100%;
 
-      inset: 0;
+      position: relative;
 
       overflow: hidden;
 
@@ -761,16 +732,16 @@
       align-items: center;
       justify-content: center;
 
-      z-index: 3;
-
       transition:
         opacity .55s ease,
         transform .65s ease;
 
+      z-index: 3;
+
       background:
         radial-gradient(
           circle at 20% 15%,
-          rgba(255,255,255,.45),
+          rgba(255, 255, 255, .45),
           transparent 25%
         ),
         linear-gradient(
@@ -782,40 +753,40 @@
     }
 
     .envelope-body {
-      width: 82%;
+      width: 78%;
 
       min-height: 58%;
 
-      padding:
-        24px 16px;
-
       border-radius: 12px;
+
+      padding:
+        28px 20px;
+
+      text-align: center;
 
       display: flex;
 
       flex-direction: column;
 
       align-items: center;
+
       justify-content: center;
 
-      text-align: center;
-
       background:
-        rgba(255,255,255,.24);
+        rgba(255, 255, 255, .24);
 
       border:
         1px solid
-        rgba(255,255,255,.62);
+        rgba(255, 255, 255, .62);
 
       box-shadow:
         0 20px 35px
-        rgba(92,30,68,.18),
+        rgba(92, 30, 68, .18),
 
         inset 0 1px
-        rgba(255,255,255,.55);
+        rgba(255, 255, 255, .55);
 
-      backdrop-filter:
-        blur(5px);
+      backdrop-filter: blur(5px);
     }
 
     .envelope-top {
@@ -829,7 +800,7 @@
       height: 42%;
 
       background:
-        rgba(255,255,255,.12);
+        rgba(255, 255, 255, .12);
 
       clip-path:
         polygon(
@@ -842,8 +813,8 @@
     }
 
     .seal {
-      width: 54px;
-      height: 54px;
+      width: 58px;
+      height: 58px;
 
       border-radius: 50%;
 
@@ -851,27 +822,27 @@
 
       place-items: center;
 
-      background: white;
+      background: #fff;
 
       color: #e889ad;
 
-      font-size: 28px;
+      font-size: 30px;
 
       box-shadow:
         0 7px 16px
-        rgba(94,31,69,.16);
+        rgba(94, 31, 69, .16);
 
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
     .envelope-kicker {
-      font-size: 9px;
+      font-size: 10px;
 
-      letter-spacing: 1.7px;
+      letter-spacing: 2px;
 
       text-transform: uppercase;
 
-      color: white;
+      color: #fff;
 
       font-weight: 700;
 
@@ -881,29 +852,28 @@
     .envelope-title {
       font-family: Caveat, cursive;
 
-      color: white;
+      color: #fff;
 
-      font-size:
-        clamp(31px,5vw,43px);
+      font-size: 43px;
 
       line-height: 1.02;
 
       margin:
-        12px 0;
+        13px 0;
 
       text-shadow:
         0 2px 8px
-        rgba(104,34,72,.18);
+        rgba(104, 34, 72, .18);
     }
 
     .envelope-hint {
-      font-size: 10px;
+      font-size: 11px;
 
-      color: white;
+      color: #fff;
 
       opacity: .9;
 
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
 
@@ -914,25 +884,25 @@
     .letter-paper {
       position: absolute;
 
-      inset: 7px;
+      inset: 8px;
 
       background: #fffafc;
 
-      border-radius: 11px;
+      border-radius: 12px;
 
       box-shadow:
         0 14px 30px
-        rgba(82,28,61,.2);
+        rgba(82, 28, 61, .2);
 
       padding:
-        13px 11px;
+        15px 13px 13px;
 
       transform:
         translateY(104%);
 
       transition:
         transform .7s
-        cubic-bezier(.2,.75,.2,1);
+        cubic-bezier(.2, .75, .2, 1);
 
       z-index: 4;
 
@@ -957,36 +927,36 @@
       text-align: center;
 
       padding:
-        3px 5px 7px;
+        3px 5px 8px;
     }
 
     .letter-head .title {
-      font-size: 29px;
+      font-size: 35px;
 
-      margin-top: 3px;
+      margin-top: 4px;
     }
 
     .letter-seal {
-      font-size: 24px;
+      font-size: 26px;
 
       margin: 1px 0;
     }
 
     .letter-body {
       height:
-        calc(100% - 94px);
+        calc(100% - 105px);
 
       padding:
-        11px 12px;
+        12px 13px;
 
-      border-radius: 9px;
+      border-radius: 10px;
 
       background:
-        rgba(255,240,247,.65);
+        rgba(255, 240, 247, .65);
 
       box-shadow:
         inset 0 0 0 1px
-        rgba(172,86,123,.1);
+        rgba(172, 86, 123, .1);
 
       overflow-y: auto;
       overflow-x: hidden;
@@ -995,18 +965,18 @@
     }
 
     .letter-body p {
-      font-size: 11.5px;
+      font-size: 12.5px;
 
-      line-height: 1.7;
+      line-height: 1.72;
 
       margin:
-        0 0 10px;
+        0 0 11px;
     }
 
     .letter-body strong {
       font-family: Caveat, cursive;
 
-      font-size: 21px;
+      font-size: 23px;
 
       color: #8b426a;
     }
@@ -1014,201 +984,100 @@
     .signature {
       font-family: Caveat, cursive;
 
-      font-size: 20px;
+      font-size: 22px;
 
       text-align: right;
 
-      margin-top: 12px;
+      margin-top: 14px;
 
       color: #7b3d62;
     }
 
 
     /* =========================
-       CONTROLS
+       ORIGINAL PAGE STACK
     ========================== */
 
-    .page-controls {
-      position: absolute;
-
-      left: 50%;
-
-      bottom: -53px;
-
-      transform:
-        translateX(-50%);
-
-      z-index: 200;
-
-      display: flex;
-
-      gap: 10px;
-
-      white-space: nowrap;
+    .page:nth-child(1) {
+      z-index: 6;
     }
 
-    .ctrl {
-      border: 0;
-
-      background:
-        rgba(255,255,255,.84);
-
-      color: #743a5d;
-
-      border-radius: 999px;
-
-      padding:
-        9px 14px;
-
-      box-shadow:
-        0 5px 14px
-        rgba(82,29,61,.16);
-
-      cursor: pointer;
-
-      font-weight: 700;
+    .page:nth-child(2) {
+      z-index: 5;
     }
 
-    .ctrl:disabled {
-      opacity: .4;
-
-      cursor: default;
+    .page:nth-child(3) {
+      z-index: 4;
     }
 
-    .hint {
-      color: white;
+    .page:nth-child(4) {
+      z-index: 3;
+    }
 
-      font-size: 11px;
+    .page:nth-child(5) {
+      z-index: 2;
+    }
 
-      opacity: .85;
+    .page:nth-child(6) {
+      z-index: 1;
+    }
 
-      margin-top: 67px;
 
-      text-align: center;
+    /*
+      Halaman yang sudah dibalik
+      turun ke belakang secara bertahap.
+    */
+
+    .page.flipped:nth-child(1) {
+      z-index: 1;
+    }
+
+    .page.flipped:nth-child(2) {
+      z-index: 2;
+    }
+
+    .page.flipped:nth-child(3) {
+      z-index: 3;
+    }
+
+    .page.flipped:nth-child(4) {
+      z-index: 4;
+    }
+
+    .page.flipped:nth-child(5) {
+      z-index: 5;
     }
 
 
     /* =========================
-       RESPONSIVE
+       SMALL SCREEN
     ========================== */
 
-    @media (max-width: 600px) {
-
-      .topbar {
-        padding:
-          12px 13px 5px;
-      }
-
-      .brand {
-        font-size: 23px;
-      }
-
-      .music-btn {
-        padding:
-          8px 10px;
-
-        font-size: 11px;
-      }
-
-      .stage {
-        padding:
-          5px 8px 25px;
-      }
-
-      .book-wrap {
-        width: 96vw;
-
-        height:
-          min(58vh,430px);
-
-        min-height: 300px;
-      }
+    @media (max-width: 360px) {
 
       .paper {
         padding:
-          18px 14px 20px;
-      }
-
-      .title {
-        font-size: 27px;
-      }
-
-      .subtitle {
-        font-size: 9.5px;
-      }
-
-      .photo-frame {
-        max-width: 90%;
-
-        padding:
-          6px 6px 22px;
-      }
-
-      .photo-frame img {
-        max-height:
-          min(29vh,200px);
-      }
-
-      .caption {
-        font-size: 18px;
-      }
-
-      .note {
-        font-size: 9px;
-      }
-
-      .cover .mini {
-        font-size: 8px;
+          19px 16px;
       }
 
       .cover h1 {
-        font-size: 42px;
+        font-size: 44px;
       }
 
-      .cover p {
-        font-size: 10px;
+      .title {
+        font-size: 29px;
       }
 
-      .big-heart {
-        font-size: 48px;
-      }
-
-      .envelope-title {
-        font-size: 31px;
-      }
-
-      .letter-body p {
-        font-size: 10.5px;
-      }
-
-      .page-controls {
-        bottom: -47px;
-      }
-
-      .ctrl {
-        padding:
-          8px 11px;
-
+      .subtitle {
         font-size: 11px;
       }
 
-      .hint {
-        margin-top: 60px;
-
-        font-size: 9px;
-      }
-    }
-
-
-    @media (max-height: 650px) {
-
-      .book-wrap {
-        height:
-          min(57vh,410px);
+      .photo-frame img {
+        max-height: 220px;
       }
 
       .hint {
-        margin-top: 55px;
+        font-size: 10px;
       }
     }
 
@@ -1251,15 +1120,15 @@
       <div class="book" id="book">
 
 
-        <!-- ==================================================
-             PAGE 0 — COVER
-        =================================================== -->
+        <!-- =========================
+             COVER
+        ========================== -->
 
         <section
           class="page"
-          data-index="0">
+          data-page="0">
 
-          <div class="page-face front cover">
+          <div class="front cover">
 
             <div class="corner"></div>
 
@@ -1283,8 +1152,8 @@
 
             <div style="
               font-family:Caveat;
-              font-size:24px;
-              margin-top:10px;
+              font-size:25px;
+              margin-top:12px
             ">
               open me →
             </div>
@@ -1292,9 +1161,7 @@
           </div>
 
 
-          <!-- BACK OF COVER -->
-
-          <div class="page-face back">
+          <div class="back">
 
             <div class="paper"></div>
 
@@ -1304,15 +1171,15 @@
 
 
 
-        <!-- ==================================================
-             PAGE 1 — PHOTO 1
-        =================================================== -->
+        <!-- =========================
+             PHOTO 1
+        ========================== -->
 
         <section
           class="page"
-          data-index="1">
+          data-page="1">
 
-          <div class="page-face front">
+          <div class="front">
 
             <div class="paper">
 
@@ -1326,8 +1193,8 @@
 
               <div class="subtitle">
                 Ada beberapa momen yang sederhana,
-                tapi entah kenapa selalu terasa spesial
-                ketika mengingatnya.
+                tapi entah kenapa selalu terasa spesial ketika
+                mengingatnya.
               </div>
 
 
@@ -1362,7 +1229,7 @@
           </div>
 
 
-          <div class="page-face back">
+          <div class="back">
 
             <div class="paper"></div>
 
@@ -1372,15 +1239,15 @@
 
 
 
-        <!-- ==================================================
-             PAGE 2 — PHOTO 2
-        =================================================== -->
+        <!-- =========================
+             PHOTO 2
+        ========================== -->
 
         <section
           class="page"
-          data-index="2">
+          data-page="2">
 
-          <div class="page-face front">
+          <div class="front">
 
             <div class="paper">
 
@@ -1429,7 +1296,7 @@
           </div>
 
 
-          <div class="page-face back">
+          <div class="back">
 
             <div class="paper"></div>
 
@@ -1439,15 +1306,15 @@
 
 
 
-        <!-- ==================================================
-             PAGE 3 — PHOTO 3
-        =================================================== -->
+        <!-- =========================
+             PHOTO 3
+        ========================== -->
 
         <section
           class="page"
-          data-index="3">
+          data-page="3">
 
-          <div class="page-face front">
+          <div class="front">
 
             <div class="paper">
 
@@ -1497,7 +1364,7 @@
           </div>
 
 
-          <div class="page-face back">
+          <div class="back">
 
             <div class="paper"></div>
 
@@ -1507,15 +1374,15 @@
 
 
 
-        <!-- ==================================================
-             PAGE 4 — PHOTO 4
-        =================================================== -->
+        <!-- =========================
+             PHOTO 4
+        ========================== -->
 
         <section
           class="page"
-          data-index="4">
+          data-page="4">
 
-          <div class="page-face front">
+          <div class="front">
 
             <div class="paper">
 
@@ -1551,9 +1418,8 @@
 
               <div class="note">
                 Sekarang, buka halaman terakhir.
-                Ada beberapa hal yang sebenarnya ingin
-                aku sampaikan langsung, tapi kali ini
-                aku tulis di sini.
+                Ada beberapa hal yang sebenarnya ingin aku
+                sampaikan langsung, tapi kali ini aku tulis di sini.
               </div>
 
 
@@ -1566,7 +1432,7 @@
           </div>
 
 
-          <div class="page-face back">
+          <div class="back">
 
             <div class="paper"></div>
 
@@ -1576,15 +1442,15 @@
 
 
 
-        <!-- ==================================================
-             PAGE 5 — LETTER
-        =================================================== -->
+        <!-- =========================
+             LETTER
+        ========================== -->
 
         <section
           class="page"
-          data-index="5">
+          data-page="5">
 
-          <div class="page-face front">
+          <div class="front">
 
             <div
               class="letter"
@@ -1624,7 +1490,7 @@
               </div>
 
 
-              <!-- LETTER -->
+              <!-- LETTER PAPER -->
 
               <article class="letter-paper">
 
@@ -1735,10 +1601,10 @@
                     atau sengaja mau menjauh. Waktu itu aku justru
                     takut, ga tau mau jawab apa karena aku orangnya
                     bukan yang bisa ngajak orang buat ngobrol.
-                    Jadi aku ga tau mau mulai dari mana, bukannya
-                    mau cuekin kamu dan ga mau nyoba ngobrol,
-                    aku memang orang yang agak susah ngajak orang
-                    buat ngbrol, dan akhirnya malah memilih diam.
+                    Jadi aku ga tau mau mulai dari mana, bukannya mau
+                    cuekin kamu dan ga mau nyoba ngobrol, aku memang
+                    orang yang agak susah ngajak orang buat ngbrol,
+                    dan akhirnya malah memilih diam.
                   </p>
 
 
@@ -1767,7 +1633,7 @@
           </div>
 
 
-          <div class="page-face back">
+          <div class="back">
 
             <div class="paper"></div>
 
@@ -1808,7 +1674,9 @@
   </main>
 
 
-  <!-- MUSIC -->
+  <!-- =========================
+       MUSIC
+  ========================== -->
 
   <audio
     id="music"
@@ -1820,9 +1688,9 @@
 
   <script>
 
-    /* =========================================
-       BOOK FLIP SYSTEM
-    ========================================= */
+    /* =========================
+       PAGE SYSTEM
+    ========================== */
 
     const pages =
       Array.from(
@@ -1830,6 +1698,7 @@
       );
 
     let current = 0;
+
 
     const nextBtn =
       document.getElementById("nextBtn");
@@ -1839,13 +1708,13 @@
 
 
     /*
-      Menentukan urutan z-index.
+      Mengatur posisi setiap halaman.
 
-      Halaman yang sedang terbuka berada
-      paling depan.
+      Halaman yang belum dibuka:
+      berada di depan sesuai urutannya.
 
-      Halaman yang sudah dibalik tetap
-      berada di kiri sebagai tumpukan.
+      Halaman yang sudah dibalik:
+      tetap berada di belakang.
     */
 
     function renderBook() {
@@ -1853,40 +1722,10 @@
       pages.forEach(
         function(page, index) {
 
-          const isFlipped =
-            index < current;
-
           page.classList.toggle(
             "flipped",
-            isFlipped
+            index < current
           );
-
-
-          if (isFlipped) {
-
-            /*
-              Halaman yang sudah dibalik
-              dibuat bertumpuk dari kiri.
-            */
-
-            page.style.zIndex =
-              String(index + 1);
-
-          } else {
-
-            /*
-              Halaman yang belum dibuka
-              bertumpuk di kanan.
-
-              Halaman aktif berada paling atas.
-            */
-
-            page.style.zIndex =
-              String(
-                pages.length - index + 10
-              );
-
-          }
 
         }
       );
@@ -1897,6 +1736,17 @@
 
       nextBtn.disabled =
         current === pages.length - 1;
+
+
+      prevBtn.style.opacity =
+        prevBtn.disabled
+          ? ".45"
+          : "1";
+
+      nextBtn.style.opacity =
+        nextBtn.disabled
+          ? ".45"
+          : "1";
     }
 
 
@@ -1929,9 +1779,9 @@
     }
 
 
-    /* =========================================
+    /* =========================
        BUTTONS
-    ========================================= */
+    ========================== */
 
     nextBtn.addEventListener(
       "click",
@@ -1957,9 +1807,9 @@
     );
 
 
-    /* =========================================
+    /* =========================
        PAGE TAP
-    ========================================= */
+    ========================== */
 
     pages.forEach(
       function(page, index) {
@@ -1967,11 +1817,6 @@
         page.addEventListener(
           "click",
           function(event) {
-
-            /*
-              Jangan ikut membalik kalau
-              yang ditekan adalah tombol.
-            */
 
             if (
               event.target.closest("button")
@@ -1981,16 +1826,15 @@
 
 
             /*
-              Kalau halaman yang aktif
-              ditekan → buka halaman berikutnya.
+              Kalau halaman aktif
+              ditekan → lanjut.
             */
 
             if (index === current) {
 
               /*
-                Khusus halaman surat:
-                klik di envelope ditangani
-                oleh sistem surat.
+                Halaman terakhir memiliki
+                sistem buka surat sendiri.
               */
 
               if (
@@ -2008,8 +1852,7 @@
 
             /*
               Kalau halaman yang sudah
-              dibalik ditekan → balik
-              sampai halaman tersebut.
+              dilewati ditekan → kembali.
             */
 
             if (index < current) {
@@ -2027,9 +1870,9 @@
     );
 
 
-    /* =========================================
+    /* =========================
        LETTER
-    ========================================= */
+    ========================== */
 
     const letter =
       document.getElementById("letter");
@@ -2047,9 +1890,9 @@
     );
 
 
-    /* =========================================
+    /* =========================
        MUSIC
-    ========================================= */
+    ========================== */
 
     const audio =
       document.getElementById("music");
@@ -2090,15 +1933,7 @@
               }
             )
             .catch(
-              function() {
-
-                /*
-                  Beberapa browser
-                  membutuhkan interaksi
-                  pengguna terlebih dahulu.
-                */
-
-              }
+              function() {}
             );
 
         }
@@ -2107,9 +1942,9 @@
     );
 
 
-    /* =========================================
+    /* =========================
        PARTICLES
-    ========================================= */
+    ========================== */
 
     function particle() {
 
@@ -2129,12 +1964,12 @@
 
       el.textContent =
         isHeart
-          ? ["♥","♡","❤","💗"][
+          ? ["♥", "♡", "❤", "💗"][
               Math.floor(
                 Math.random() * 4
               )
             ]
-          : ["✦","✧","·","⋆"][
+          : ["✦", "✧", "·", "⋆"][
               Math.floor(
                 Math.random() * 4
               )
@@ -2210,9 +2045,9 @@
     }
 
 
-    /* =========================================
-       START
-    ========================================= */
+    /* =========================
+       INITIALIZE
+    ========================== */
 
     renderBook();
 
@@ -2220,4 +2055,4 @@
 
 </body>
 
-                  </html>
+  </html>
