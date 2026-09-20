@@ -3,8 +3,12 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <title>Happy Birthday — A Little Book For You</title>
+
   <meta name="theme-color" content="#f59ab8">
 
   <style>
@@ -14,48 +18,59 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --ink: #5c3150;
+      --paper: #fffafc;
+      --pink: #f59ab8;
+    }
+
     html,
     body {
-      margin: 0;
       width: 100%;
       height: 100%;
-      min-height: 100%;
-      overflow: hidden !important;
-      overscroll-behavior: none;
+      margin: 0;
+      overflow: hidden;
       font-family: "DM Sans", sans-serif;
       color: var(--ink);
     }
 
-    :root {
-      --pink1: #ffb7cd;
-      --pink2: #f68bb0;
-      --pink3: #d96fa7;
-      --ink: #5c3150;
-      --paper: #fffafc;
-      --shadow: rgba(91, 36, 69, .28);
-    }
-
     body {
-      position: fixed;
-      inset: 0;
-      min-height: 100dvh;
-
       background:
-        radial-gradient(circle at 15% 15%, rgba(255, 255, 255, .55), transparent 22%),
-        radial-gradient(circle at 85% 80%, rgba(255, 255, 255, .35), transparent 24%),
-        linear-gradient(145deg, #ffd4e2 0%, #f7a7c1 34%, #e987b0 67%, #c96ea5 100%);
+        radial-gradient(
+          circle at 15% 15%,
+          rgba(255,255,255,.55),
+          transparent 22%
+        ),
+        radial-gradient(
+          circle at 85% 80%,
+          rgba(255,255,255,.35),
+          transparent 24%
+        ),
+        linear-gradient(
+          145deg,
+          #ffd4e2 0%,
+          #f7a7c1 34%,
+          #e987b0 67%,
+          #c96ea5 100%
+        );
     }
 
-    body:before {
+    body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
       opacity: .16;
-      background-image: radial-gradient(#fff 1px, transparent 1px);
+      background-image:
+        radial-gradient(#fff 1px, transparent 1px);
       background-size: 18px 18px;
       mix-blend-mode: soft-light;
     }
+
+
+    /* =========================
+       PARTICLES
+    ========================== */
 
     #particles {
       position: fixed;
@@ -71,7 +86,9 @@
       bottom: -50px;
       opacity: 0;
       animation: floatUp linear forwards;
-      filter: drop-shadow(0 3px 7px rgba(117, 35, 78, .15));
+      filter: drop-shadow(
+        0 3px 7px rgba(117,35,78,.15)
+      );
     }
 
     .heart {
@@ -85,7 +102,10 @@
 
     @keyframes floatUp {
       0% {
-        transform: translate3d(0, 0, 0) rotate(0deg) scale(.75);
+        transform:
+          translate3d(0,0,0)
+          rotate(0deg)
+          scale(.75);
         opacity: 0;
       }
 
@@ -98,32 +118,35 @@
       }
 
       100% {
-        transform: translate3d(var(--drift), -115vh, 0) rotate(var(--rot)) scale(1.2);
+        transform:
+          translate3d(
+            var(--drift),
+            -115vh,
+            0
+          )
+          rotate(var(--rot))
+          scale(1.2);
+
         opacity: 0;
       }
     }
 
+
     /* =========================
        TOP BAR
-       ========================= */
+    ========================== */
 
     .topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-
-      height: 70px;
-
+      position: relative;
       z-index: 100;
 
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
 
-      padding: 16px 18px 8px;
+      padding: 15px 18px 7px;
 
-      max-width: 980px;
+      max-width: 1000px;
       margin: auto;
 
       color: white;
@@ -133,67 +156,74 @@
       font-family: Caveat, cursive;
       font-size: 28px;
       font-weight: 700;
-      text-shadow: 0 2px 8px rgba(102, 29, 66, .18);
+
+      text-shadow:
+        0 2px 8px rgba(102,29,66,.18);
     }
 
     .music-btn {
-      border: 1px solid rgba(255, 255, 255, .6);
-      background: rgba(255, 255, 255, .18);
+      border: 1px solid rgba(255,255,255,.6);
+
+      background:
+        rgba(255,255,255,.18);
+
       color: white;
+
       border-radius: 999px;
+
       padding: 9px 13px;
+
       backdrop-filter: blur(10px);
+
       cursor: pointer;
+
       font-weight: 600;
     }
 
+
     /* =========================
-       MAIN STAGE
-       ========================= */
+       STAGE
+    ========================== */
 
     .stage {
-      position: fixed;
-
-      top: 70px;
-      left: 0;
-      right: 0;
-      bottom: 0;
-
-      width: 100%;
-      height: auto;
-      min-height: 0;
-
+      position: relative;
       z-index: 2;
+
+      height: calc(100vh - 68px);
 
       display: flex;
       flex-direction: column;
+
       align-items: center;
       justify-content: center;
 
-      padding: 8px 16px 20px;
-
-      overflow: hidden !important;
-      overscroll-behavior: none;
+      padding:
+        8px 14px 30px;
     }
+
+
+    /* =========================
+       BOOK WRAPPER
+    ========================== */
+
+    .book-wrap {
+      position: relative;
+
+      width: min(94vw, 820px);
+
+      height: min(68vh, 540px);
+
+      min-height: 360px;
+
+      perspective: 2200px;
+
+      flex-shrink: 0;
+    }
+
 
     /* =========================
        BOOK
-       ========================= */
-
-    .book-wrap {
-      width: min(88vw, 420px);
-
-      /*
-        Tinggi mengikuti ruang layar.
-        Rasio buku tetap 3:4.
-      */
-      height: min(72dvh, 560px);
-
-      aspect-ratio: 3 / 4;
-
-      position: relative;
-      flex-shrink: 0;
-    }
+    ========================== */
 
     .book {
       position: relative;
@@ -203,84 +233,137 @@
 
       transform-style: preserve-3d;
 
-      filter: drop-shadow(0 25px 35px rgba(88, 29, 67, .25));
+      filter:
+        drop-shadow(
+          0 25px 35px rgba(88,29,67,.28)
+        );
     }
+
+
+    /*
+      Bagian kiri dan kanan buku.
+      Garis tengah menjadi spine.
+    */
+
+    .book::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      bottom: 0;
+      left: 50%;
+
+      width: 3px;
+
+      transform:
+        translateX(-50%);
+
+      background:
+        linear-gradient(
+          to right,
+          rgba(93,40,67,.20),
+          rgba(255,255,255,.55),
+          rgba(93,40,67,.12)
+        );
+
+      z-index: 50;
+
+      pointer-events: none;
+    }
+
+
+    /* =========================
+       PAGE
+    ========================== */
 
     .page {
       position: absolute;
-      inset: 0;
 
-      transform-style: preserve-3d;
+      top: 0;
+      right: 0;
+
+      width: 50%;
+      height: 100%;
+
       transform-origin: left center;
 
+      transform-style: preserve-3d;
+
       transition:
-        transform .85s cubic-bezier(.2, .75, .2, 1),
-        box-shadow .85s;
+        transform .9s
+        cubic-bezier(.2,.75,.2,1);
 
-      border-radius: 9px 15px 15px 9px;
-
-      box-shadow: 0 7px 20px rgba(82, 28, 61, .18);
+      border-radius:
+        0 14px 14px 0;
 
       cursor: pointer;
 
       /*
-        Halaman tidak boleh memperlihatkan
-        isi halaman lain di luar batasnya.
+        Jangan gunakan overflow:hidden
+        pada elemen flip utamanya.
       */
-      overflow: hidden;
+      overflow: visible;
 
-      background: #fffafc;
+      backface-visibility: visible;
     }
+
+
+    /*
+      Halaman yang sudah dibuka:
+      bergerak dari kanan ke kiri.
+    */
 
     .page.flipped {
-      transform: rotateY(-180deg);
+      transform:
+        rotateY(-180deg);
     }
 
-    .page .front,
-    .page .back {
-      position: absolute;
-      inset: 0;
-
-      /*
-        Ini penting agar halaman tidak tembus pandang.
-      */
-      background: #fffafc !important;
-      opacity: 1 !important;
-
-      border-radius: inherit;
-      border: 1px solid rgba(117, 55, 91, .16);
-
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-
-      overflow: hidden;
-    }
-
-    .page .front {
-      z-index: 2;
-    }
-
-    .page .back {
-      z-index: 1;
-      transform: rotateY(180deg);
-    }
 
     /* =========================
-       PAPER
-       ========================= */
+       FRONT / BACK
+    ========================== */
 
-    .paper {
+    .page-face {
       position: absolute;
+
       inset: 0;
 
-      padding: 25px 22px 26px;
+      width: 100%;
+      height: 100%;
+
+      overflow: hidden;
+
+      backface-visibility: hidden;
+
+      transform-style: preserve-3d;
+
+      border: 1px solid
+        rgba(117,55,91,.16);
 
       background:
-        radial-gradient(
-          circle at 8% 12%,
-          rgba(255, 187, 207, .28),
-          transparent 25%
-        ),
+        #fffafc;
+
+      box-shadow:
+        0 5px 18px
+        rgba(82,28,61,.16);
+    }
+
+
+    .front {
+      border-radius:
+        0 14px 14px 0;
+    }
+
+
+    .back {
+      transform:
+        rotateY(180deg);
+
+      border-radius:
+        14px 0 0 14px;
+
+      background:
         linear-gradient(
           145deg,
           #fffdfd,
@@ -289,37 +372,85 @@
         );
 
       /*
-        Scroll hanya di dalam halaman foto.
+        Bagian belakang halaman
+        dibuat solid.
       */
-      overflow-x: hidden;
+      opacity: 1;
+    }
+
+
+    /*
+      Sedikit efek garis-garis kertas
+      di halaman belakang.
+    */
+
+    .back::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 10px;
+
+      border-radius: 6px;
+
+      border:
+        1px solid
+        rgba(170,91,125,.08);
+
+      pointer-events: none;
+    }
+
+
+    /* =========================
+       PAPER
+    ========================== */
+
+    .paper {
+      position: absolute;
+
+      inset: 0;
+
+      padding:
+        25px 22px 26px;
+
       overflow-y: auto;
+      overflow-x: hidden;
 
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior: contain;
-
-      scrollbar-width: none;
+      background:
+        radial-gradient(
+          circle at 8% 12%,
+          rgba(255,187,207,.28),
+          transparent 25%
+        ),
+        linear-gradient(
+          145deg,
+          #fffdfd,
+          #fff7fa 58%,
+          #fdeef5
+        );
     }
 
-    .paper::-webkit-scrollbar {
-      display: none;
-    }
 
     /* =========================
        COVER
-       ========================= */
+    ========================== */
 
     .cover {
       display: flex;
+
       flex-direction: column;
-      justify-content: center;
+
       align-items: center;
+      justify-content: center;
 
       text-align: center;
+
+      color: white;
 
       background:
         radial-gradient(
           circle at 50% 30%,
-          rgba(255, 255, 255, .6),
+          rgba(255,255,255,.6),
           transparent 25%
         ),
         linear-gradient(
@@ -327,37 +458,50 @@
           #ffd6e7 0%,
           #ffadc9 52%,
           #f783b2 100%
-        ) !important;
-
-      color: white;
-
-      overflow: hidden !important;
+        );
     }
 
     .cover .mini {
-      font-size: 12px;
-      letter-spacing: 3px;
+      font-size: 11px;
+
+      letter-spacing: 2.5px;
+
       text-transform: uppercase;
-      opacity: .85;
+
+      opacity: .88;
     }
 
     .cover h1 {
       font-family: Caveat, cursive;
-      font-size: clamp(42px, 12vw, 58px);
+
+      font-size:
+        clamp(42px,7vw,65px);
+
       line-height: .9;
-      margin: 18px 0 10px;
-      text-shadow: 0 3px 12px rgba(91, 28, 63, .28);
+
+      margin:
+        18px 0 10px;
+
+      text-shadow:
+        0 3px 12px
+        rgba(91,28,63,.28);
     }
 
     .cover p {
-      max-width: 260px;
+      width: 82%;
+
+      max-width: 270px;
+
+      font-size: 12px;
+
       line-height: 1.55;
-      font-size: 14px;
     }
 
-    .cover .big-heart {
+    .big-heart {
       font-size: 62px;
-      animation: pulse 1.8s infinite;
+
+      animation:
+        pulse 1.8s infinite;
     }
 
     @keyframes pulse {
@@ -368,52 +512,63 @@
 
     .corner {
       position: absolute;
+
       inset: 12px;
 
-      border: 1px solid rgba(255, 255, 255, .5);
+      border:
+        1px solid
+        rgba(255,255,255,.5);
+
       border-radius: 8px;
 
       pointer-events: none;
     }
 
-    /* =========================
-       PAGE CONTENT
-       ========================= */
 
-    .page-number {
-      position: absolute;
-      bottom: 12px;
-      right: 16px;
-      font-size: 11px;
-      opacity: .55;
-    }
+    /* =========================
+       CONTENT
+    ========================== */
 
     .kicker {
-      font-size: 11px;
-      letter-spacing: 2px;
+      font-size: 10px;
+
+      letter-spacing: 1.8px;
+
       text-transform: uppercase;
+
       color: #bb5b86;
+
       font-weight: 700;
     }
 
     .title {
       font-family: Caveat, cursive;
-      font-size: clamp(30px, 8vw, 40px);
+
+      font-size:
+        clamp(28px,4.5vw,40px);
+
       line-height: 1;
-      margin: 7px 0 4px;
+
+      margin:
+        7px 0 6px;
+
       color: #7b3d62;
     }
 
     .subtitle {
-      font-size: 12px;
+      font-size: 11px;
+
       line-height: 1.55;
+
       opacity: .72;
-      margin-bottom: 14px;
+
+      margin-bottom: 13px;
     }
+
 
     /* =========================
        PHOTO
-       ========================= */
+    ========================== */
 
     .photo-frame {
       position: relative;
@@ -421,25 +576,25 @@
       display: table;
 
       width: fit-content;
-      max-width: 82%;
 
-      margin: 8px auto 15px;
+      max-width: 88%;
 
-      padding: 9px 9px 27px;
+      margin:
+        8px auto 15px;
 
-      background: #fff;
+      padding:
+        8px 8px 25px;
+
+      background: white;
 
       border-radius: 3px;
 
-      box-shadow: 0 9px 18px rgba(81, 33, 60, .2);
+      box-shadow:
+        0 9px 18px
+        rgba(81,33,60,.2);
 
-      transform: rotate(-1.2deg);
-
-      box-sizing: border-box;
-    }
-
-    .photo-frame:nth-of-type(even) {
-      transform: rotate(1.2deg);
+      transform:
+        rotate(-1.2deg);
     }
 
     .photo-frame img {
@@ -449,7 +604,9 @@
       height: auto;
 
       max-width: 100%;
-      max-height: clamp(180px, 38vh, 300px);
+
+      max-height:
+        min(38vh,285px);
 
       object-fit: contain;
 
@@ -460,145 +617,126 @@
       text-align: center;
 
       font-family: Caveat, cursive;
-      font-size: 23px;
+
+      font-size: 21px;
 
       color: #7b3d62;
 
       margin-top: 3px;
     }
 
+
+    /* =========================
+       PIN
+    ========================== */
+
     .pin {
       position: absolute;
 
-      top: -19px;
+      top: -17px;
       left: 50%;
 
-      transform: translateX(-50%) rotate(2deg);
+      transform:
+        translateX(-50%)
+        rotate(2deg);
 
-      width: 31px;
-      height: 31px;
+      width: 29px;
+      height: 29px;
 
       background: white;
 
-      z-index: 4;
+      z-index: 5;
 
-      filter: drop-shadow(
-        0 3px 4px rgba(0, 0, 0, .18)
-      );
+      filter:
+        drop-shadow(
+          0 3px 4px
+          rgba(0,0,0,.18)
+        );
     }
 
-    .pin:before {
+    .pin::before {
       content: "♥";
 
       position: absolute;
+
       inset: 0;
 
       display: grid;
+
       place-items: center;
 
       color: #f2b7ca;
-      font-size: 18px;
+
+      font-size: 17px;
     }
 
-    .pin:after {
+    .pin::after {
       content: "";
 
       position: absolute;
 
       width: 4px;
-      height: 9px;
+      height: 8px;
 
       background: #ddd;
 
       left: 50%;
-      top: 26px;
+      top: 25px;
 
-      transform: translateX(-50%);
+      transform:
+        translateX(-50%);
 
       border-radius: 3px;
     }
 
+
+    /* =========================
+       NOTE
+    ========================== */
+
     .note {
-      margin: 5px auto 0;
+      margin:
+        5px auto 0;
 
-      padding: 9px 11px;
+      padding:
+        8px 10px;
 
-      background: #fff;
+      background: white;
 
-      border-left: 3px solid #eea1bc;
+      border-left:
+        3px solid #eea1bc;
 
       border-radius: 5px;
 
-      box-shadow: 0 5px 12px rgba(90, 35, 68, .08);
+      box-shadow:
+        0 5px 12px
+        rgba(90,35,68,.08);
 
-      font-size: 11px;
+      font-size: 10px;
+
       line-height: 1.45;
     }
 
-    /* =========================
-       PAGE CONTROLS
-       ========================= */
+    .page-number {
+      position: absolute;
 
-    .page-controls {
-      position: relative;
+      right: 15px;
+      bottom: 10px;
 
-      left: auto;
-      bottom: auto;
+      font-size: 10px;
 
-      transform: none;
-
-      z-index: 20;
-
-      display: flex;
-
-      gap: 10px;
-
-      white-space: nowrap;
-
-      margin-top: 18px;
-
-      flex-shrink: 0;
+      opacity: .5;
     }
 
-    .ctrl {
-      border: 0;
-
-      background: rgba(255, 255, 255, .82);
-
-      color: #743a5d;
-
-      border-radius: 999px;
-
-      padding: 9px 14px;
-
-      box-shadow: 0 5px 14px rgba(82, 29, 61, .16);
-
-      cursor: pointer;
-
-      font-weight: 700;
-    }
-
-    .hint {
-      color: white;
-
-      font-size: 12px;
-      opacity: .85;
-
-      margin-top: 10px;
-
-      text-align: center;
-
-      flex-shrink: 0;
-    }
 
     /* =========================
        LETTER
-       ========================= */
+    ========================== */
 
     .letter {
-      height: 100%;
+      position: absolute;
 
-      position: relative;
+      inset: 0;
 
       overflow: hidden;
 
@@ -615,6 +753,7 @@
 
     .envelope {
       position: absolute;
+
       inset: 0;
 
       display: flex;
@@ -622,16 +761,16 @@
       align-items: center;
       justify-content: center;
 
+      z-index: 3;
+
       transition:
         opacity .55s ease,
         transform .65s ease;
 
-      z-index: 3;
-
       background:
         radial-gradient(
           circle at 20% 15%,
-          rgba(255, 255, 255, .45),
+          rgba(255,255,255,.45),
           transparent 25%
         ),
         linear-gradient(
@@ -643,30 +782,40 @@
     }
 
     .envelope-body {
-      width: 78%;
+      width: 82%;
+
       min-height: 58%;
+
+      padding:
+        24px 16px;
 
       border-radius: 12px;
 
-      padding: 28px 20px;
-
-      text-align: center;
-
       display: flex;
+
       flex-direction: column;
 
       align-items: center;
       justify-content: center;
 
-      background: rgba(255, 255, 255, .24);
+      text-align: center;
 
-      border: 1px solid rgba(255, 255, 255, .62);
+      background:
+        rgba(255,255,255,.24);
+
+      border:
+        1px solid
+        rgba(255,255,255,.62);
 
       box-shadow:
-        0 20px 35px rgba(92, 30, 68, .18),
-        inset 0 1px rgba(255, 255, 255, .55);
+        0 20px 35px
+        rgba(92,30,68,.18),
 
-      backdrop-filter: blur(5px);
+        inset 0 1px
+        rgba(255,255,255,.55);
+
+      backdrop-filter:
+        blur(5px);
     }
 
     .envelope-top {
@@ -674,50 +823,55 @@
 
       left: 0;
       right: 0;
+
       top: 0;
 
       height: 42%;
 
-      background: rgba(255, 255, 255, .12);
+      background:
+        rgba(255,255,255,.12);
 
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        50% 100%
-      );
+      clip-path:
+        polygon(
+          0 0,
+          100% 0,
+          50% 100%
+        );
 
       pointer-events: none;
     }
 
     .seal {
-      width: 58px;
-      height: 58px;
+      width: 54px;
+      height: 54px;
 
       border-radius: 50%;
 
       display: grid;
+
       place-items: center;
 
-      background: #fff;
+      background: white;
 
       color: #e889ad;
 
-      font-size: 30px;
+      font-size: 28px;
 
       box-shadow:
-        0 7px 16px rgba(94, 31, 69, .16);
+        0 7px 16px
+        rgba(94,31,69,.16);
 
-      margin-bottom: 18px;
+      margin-bottom: 15px;
     }
 
     .envelope-kicker {
-      font-size: 10px;
+      font-size: 9px;
 
-      letter-spacing: 2px;
+      letter-spacing: 1.7px;
 
       text-transform: uppercase;
 
-      color: #fff;
+      color: white;
 
       font-weight: 700;
 
@@ -727,690 +881,1343 @@
     .envelope-title {
       font-family: Caveat, cursive;
 
-      color: #fff;
+      color: white;
 
-      font-size: 43px;
+      font-size:
+        clamp(31px,5vw,43px);
 
       line-height: 1.02;
 
-      margin: 13px 0;
+      margin:
+        12px 0;
 
       text-shadow:
-        0 2px 8px rgba(104, 34, 72, .18);
+        0 2px 8px
+        rgba(104,34,72,.18);
     }
 
     .envelope-hint {
-      font-size: 11px;
+      font-size: 10px;
 
-      color: #fff;
+      color: white;
 
       opacity: .9;
 
-      margin-top: 10px;
+      margin-top: 8px;
     }
+
 
     /* =========================
        LETTER PAPER
-       ========================= */
+    ========================== */
 
     .letter-paper {
       position: absolute;
 
-      inset: 8px 8px 8px;
+      inset: 7px;
 
       background: #fffafc;
 
-      border-radius: 12px;
+      border-radius: 11px;
 
       box-shadow:
-        0 14px 30px rgba(82, 28, 61, .2);
+        0 14px 30px
+        rgba(82,28,61,.2);
 
-      padding: 15px 13px 13px;
+      padding:
+        13px 11px;
 
-      transform: translateY(104%);
+      transform:
+        translateY(104%);
 
       transition:
-        transform .7s cubic-bezier(.2, .75, .2, 1);
+        transform .7s
+        cubic-bezier(.2,.75,.2,1);
 
       z-index: 4;
 
       overflow: hidden;
-
-      display: flex;
-      flex-direction: column;
-
-      min-height: 0;
     }
 
     .letter.opened .envelope {
       opacity: 0;
 
-      transform: scale(.96);
+      transform:
+        scale(.96);
 
       pointer-events: none;
     }
 
     .letter.opened .letter-paper {
-      transform: translateY(0);
+      transform:
+        translateY(0);
     }
 
     .letter-head {
       text-align: center;
 
-      padding: 3px 5px 8px;
-
-      flex-shrink: 0;
+      padding:
+        3px 5px 7px;
     }
 
     .letter-head .title {
-      font-size: 35px;
-      margin-top: 4px;
+      font-size: 29px;
+
+      margin-top: 3px;
     }
 
     .letter-seal {
-      font-size: 26px;
+      font-size: 24px;
+
       margin: 1px 0;
     }
 
-    /*
-      Hanya area isi surat yang bisa scroll.
-    */
-
     .letter-body {
-      flex: 1 1 auto;
+      height:
+        calc(100% - 94px);
 
-      min-height: 0;
-      height: auto;
+      padding:
+        11px 12px;
 
-      padding: 12px 13px;
+      border-radius: 9px;
 
-      border-radius: 10px;
-
-      background: rgba(255, 240, 247, .65);
+      background:
+        rgba(255,240,247,.65);
 
       box-shadow:
-        inset 0 0 0 1px rgba(172, 86, 123, .1);
+        inset 0 0 0 1px
+        rgba(172,86,123,.1);
 
-      overflow-x: hidden;
       overflow-y: auto;
+      overflow-x: hidden;
 
       -webkit-overflow-scrolling: touch;
-
-      overscroll-behavior: contain;
-
-      scrollbar-width: none;
-    }
-
-    .letter-body::-webkit-scrollbar {
-      display: none;
     }
 
     .letter-body p {
-      font-size: 12.5px;
+      font-size: 11.5px;
 
-      line-height: 1.72;
+      line-height: 1.7;
 
-      margin: 0 0 11px;
+      margin:
+        0 0 10px;
     }
 
     .letter-body strong {
       font-family: Caveat, cursive;
 
-      font-size: 23px;
+      font-size: 21px;
 
       color: #8b426a;
     }
 
-    .letter-body .signature {
+    .signature {
       font-family: Caveat, cursive;
 
-      font-size: 22px;
+      font-size: 20px;
 
       text-align: right;
 
-      margin-top: 14px;
+      margin-top: 12px;
 
       color: #7b3d62;
     }
 
-    .back .paper {
-      transform: none;
-    }
 
     /* =========================
-       Z-INDEX
-       ========================= */
+       CONTROLS
+    ========================== */
 
-    .page.back-layer {
-      z-index: 1;
+    .page-controls {
+      position: absolute;
+
+      left: 50%;
+
+      bottom: -53px;
+
+      transform:
+        translateX(-50%);
+
+      z-index: 200;
+
+      display: flex;
+
+      gap: 10px;
+
+      white-space: nowrap;
     }
 
-    .page:nth-child(1) {
-      z-index: 6;
+    .ctrl {
+      border: 0;
+
+      background:
+        rgba(255,255,255,.84);
+
+      color: #743a5d;
+
+      border-radius: 999px;
+
+      padding:
+        9px 14px;
+
+      box-shadow:
+        0 5px 14px
+        rgba(82,29,61,.16);
+
+      cursor: pointer;
+
+      font-weight: 700;
     }
 
-    .page:nth-child(2) {
-      z-index: 5;
+    .ctrl:disabled {
+      opacity: .4;
+
+      cursor: default;
     }
 
-    .page:nth-child(3) {
-      z-index: 4;
+    .hint {
+      color: white;
+
+      font-size: 11px;
+
+      opacity: .85;
+
+      margin-top: 67px;
+
+      text-align: center;
     }
 
-    .page:nth-child(4) {
-      z-index: 3;
-    }
-
-    .page:nth-child(5) {
-      z-index: 2;
-    }
-
-    .page:nth-child(6) {
-      z-index: 1;
-    }
-
-    .page.flipped:nth-child(1) {
-      z-index: 1;
-    }
-
-    .page.flipped:nth-child(2) {
-      z-index: 2;
-    }
-
-    .page.flipped:nth-child(3) {
-      z-index: 3;
-    }
-
-    .page.flipped:nth-child(4) {
-      z-index: 4;
-    }
-
-    .page.flipped:nth-child(5) {
-      z-index: 5;
-    }
 
     /* =========================
-       MOBILE
-       ========================= */
+       RESPONSIVE
+    ========================== */
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
 
       .topbar {
-        padding: 12px 13px 6px;
+        padding:
+          12px 13px 5px;
       }
 
       .brand {
-        font-size: 24px;
+        font-size: 23px;
       }
 
       .music-btn {
-        padding: 8px 11px;
-        font-size: 12px;
-      }
+        padding:
+          8px 10px;
 
-      .stage {
-        padding: 4px 10px 15px;
-      }
-
-      .book-wrap {
-        width: min(92vw, 420px);
-        height: min(70dvh, 560px);
-      }
-
-      .paper {
-        padding: 20px 16px 22px;
-      }
-
-      .photo-frame {
-        max-width: 88%;
-      }
-
-      .photo-frame img {
-        max-height: min(30dvh, 220px);
-      }
-
-      .page-controls {
-        margin-top: 14px;
-      }
-
-      .ctrl {
-        padding: 8px 12px;
-        font-size: 12px;
-      }
-
-      .hint {
         font-size: 11px;
       }
 
-      .letter-paper {
-        inset: 6px;
-        padding: 11px 9px 9px;
-      }
-
-      .letter-body {
-        padding: 10px 11px;
-      }
-
-      .letter-body p {
-        font-size: 12px;
-        line-height: 1.65;
-      }
-    }
-
-    /* =========================
-       HP PENDEK
-       ========================= */
-
-    @media (max-height: 650px) {
-
-      .topbar {
-        height: 58px;
-        padding-top: 7px;
-      }
-
       .stage {
-        top: 58px;
-        padding-top: 2px;
-        padding-bottom: 8px;
+        padding:
+          5px 8px 25px;
       }
 
       .book-wrap {
-        width: min(78vw, 350px);
-        height: min(68dvh, 470px);
-      }
+        width: 96vw;
 
-      .photo-frame img {
-        max-height: 175px;
+        height:
+          min(58vh,430px);
+
+        min-height: 300px;
       }
 
       .paper {
-        padding: 16px 15px 20px;
+        padding:
+          18px 14px 20px;
       }
 
-      .page-controls {
-        margin-top: 8px;
+      .title {
+        font-size: 27px;
       }
 
-      .hint {
-        margin-top: 5px;
-      }
-    }
-
-    /* =========================
-       HP SANGAT KECIL
-       ========================= */
-
-    @media (max-width: 360px) {
-
-      .paper {
-        padding: 19px 16px;
-      }
-
-      .cover h1 {
-        font-size: 43px;
-      }
-
-      .cover .big-heart {
-        font-size: 52px;
+      .subtitle {
+        font-size: 9.5px;
       }
 
       .photo-frame {
-        max-width: 86%;
-        padding: 7px 7px 23px;
+        max-width: 90%;
+
+        padding:
+          6px 6px 22px;
       }
 
       .photo-frame img {
-        max-height: 175px;
+        max-height:
+          min(29vh,200px);
       }
 
       .caption {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .note {
-        font-size: 10.5px;
+        font-size: 9px;
       }
 
-      .letter-head .title {
+      .cover .mini {
+        font-size: 8px;
+      }
+
+      .cover h1 {
+        font-size: 42px;
+      }
+
+      .cover p {
+        font-size: 10px;
+      }
+
+      .big-heart {
+        font-size: 48px;
+      }
+
+      .envelope-title {
         font-size: 31px;
       }
 
       .letter-body p {
-        font-size: 11.5px;
+        font-size: 10.5px;
+      }
+
+      .page-controls {
+        bottom: -47px;
+      }
+
+      .ctrl {
+        padding:
+          8px 11px;
+
+        font-size: 11px;
+      }
+
+      .hint {
+        margin-top: 60px;
+
+        font-size: 9px;
       }
     }
+
+
+    @media (max-height: 650px) {
+
+      .book-wrap {
+        height:
+          min(57vh,410px);
+      }
+
+      .hint {
+        margin-top: 55px;
+      }
+    }
+
   </style>
 </head>
 
+
 <body>
+
   <div id="particles"></div>
 
+
+  <!-- =========================
+       TOP BAR
+  ========================== -->
+
   <header class="topbar">
-    <div class="brand">a little birthday book ♡</div>
-    <button class="music-btn" id="musicBtn">♫ Play music</button>
+
+    <div class="brand">
+      a little birthday book ♡
+    </div>
+
+    <button
+      class="music-btn"
+      id="musicBtn">
+      ♫ Play music
+    </button>
+
   </header>
 
+
+  <!-- =========================
+       BOOK
+  ========================== -->
+
   <main class="stage">
+
     <div class="book-wrap">
+
       <div class="book" id="book">
 
-        <!-- COVER -->
-        <section class="page" data-page="0">
-          <div class="front cover">
+
+        <!-- ==================================================
+             PAGE 0 — COVER
+        =================================================== -->
+
+        <section
+          class="page"
+          data-index="0">
+
+          <div class="page-face front cover">
+
             <div class="corner"></div>
-            <div class="mini">a tiny book made especially for you</div>
-            <div class="big-heart">♡</div>
-            <h1>Happy<br>Birthday</h1>
-            <p>Empat halaman kecil, empat foto, dan banyak hal yang ingin aku sampaikan.</p>
-            <div style="font-family:Caveat;font-size:25px;margin-top:12px">open me →</div>
-          </div>
-          <div class="back">
-            <div class="paper"></div>
-          </div>
-        </section>
 
-        <!-- PHOTO 1 -->
-        <section class="page" data-page="1">
-          <div class="front">
-            <div class="paper">
-              <div class="kicker">page 01 · little memory</div>
-              <div class="title">Hari yang indah dimulai dari kamu</div>
-              <div class="subtitle">Ada beberapa momen yang sederhana, tapi entah kenapa selalu terasa spesial ketika
-                mengingatnya.</div>
-              <div class="photo-frame">
-                <div class="pin"></div>
-                <img src="assets/photo1.jpg" alt="Kenangan 1">
-                <div class="caption">one of my favorite moments ♡</div>
-              </div>
-              <div class="note">Hari ini bukan cuma tentang bertambahnya usia. Semoga kamu juga bisa melihat betapa
-                banyak hal baik yang sudah kamu lewati sampai di sini.</div>
-              <div class="page-number">01</div>
+            <div class="mini">
+              a tiny book made especially for you
             </div>
-          </div>
-          <div class="back">
-            <div class="paper"></div>
-          </div>
-        </section>
 
-        <!-- PHOTO 2 -->
-        <section class="page" data-page="2">
-          <div class="front">
-            <div class="paper">
-              <div class="kicker">page 02 · keep this</div>
-              <div class="title">Simpan momen ini baik-baik</div>
-              <div class="subtitle">Karena suatu hari nanti, kita mungkin akan tersenyum saat melihat halaman kecil ini
-                lagi.</div>
-              <div class="photo-frame">
-                <div class="pin"></div>
-                <img src="assets/photo2.jpg" alt="Kenangan 2">
-                <div class="caption">you make ordinary days brighter ♡</div>
-              </div>
-              <div class="note">Semoga kamu selalu dikelilingi orang-orang yang tulus, hal-hal yang membuatmu tenang,
-                dan alasan-alasan kecil untuk tetap tersenyum.</div>
-              <div class="page-number">02</div>
+            <div class="big-heart">
+              ♡
             </div>
-          </div>
-          <div class="back">
-            <div class="paper"></div>
-          </div>
-        </section>
 
-        <!-- PHOTO 3 -->
-        <section class="page" data-page="3">
-          <div class="front">
-            <div class="paper">
-              <div class="kicker">page 03 · another memory</div>
-              <div class="title">Semoga langkahmu selalu baik</div>
-              <div class="subtitle">Kalau nanti jalannya terasa panjang, semoga kamu tetap punya cukup keberanian untuk
-                melanjutkannya.</div>
-              <div class="photo-frame">
-                <div class="pin"></div>
-                <img src="assets/photo3.jpg" alt="Kenangan 3">
-                <div class="caption">more memories to come ♡</div>
-              </div>
-              <div class="note">Aku harap tahun baru dalam hidupmu membawa lebih banyak kesempatan, pengalaman baru, dan
-                cerita yang pantas kamu banggakan.</div>
-              <div class="page-number">03</div>
+            <h1>
+              Happy<br>
+              Birthday
+            </h1>
+
+            <p>
+              Empat halaman kecil, empat foto,
+              dan banyak hal yang ingin aku sampaikan.
+            </p>
+
+            <div style="
+              font-family:Caveat;
+              font-size:24px;
+              margin-top:10px;
+            ">
+              open me →
             </div>
+
           </div>
-          <div class="back">
+
+
+          <!-- BACK OF COVER -->
+
+          <div class="page-face back">
+
             <div class="paper"></div>
+
           </div>
+
         </section>
 
-        <!-- PHOTO 4 -->
-        <section class="page" data-page="4">
-          <div class="front">
+
+
+        <!-- ==================================================
+             PAGE 1 — PHOTO 1
+        =================================================== -->
+
+        <section
+          class="page"
+          data-index="1">
+
+          <div class="page-face front">
+
             <div class="paper">
-              <div class="kicker">page 04 · before the letter</div>
-              <div class="title">Satu halaman lagi...</div>
-              <div class="subtitle">Sebelum sampai ke surat terakhir, aku cuma mau bilang: terima kasih sudah menjadi
-                bagian dari banyak cerita yang aku ingat.</div>
-              <div class="photo-frame">
-                <div class="pin"></div>
-                <img src="assets/photo4.jpg" alt="Kenangan 4">
-                <div class="caption">and this one too ♡</div>
+
+              <div class="kicker">
+                page 01 · little memory
               </div>
-              <div class="note">Sekarang, buka halaman terakhir. Ada beberapa hal yang sebenarnya ingin aku sampaikan
-                langsung, tapi kali ini aku tulis di sini.</div>
-              <div class="page-number">04</div>
+
+              <div class="title">
+                Hari yang indah dimulai dari kamu
+              </div>
+
+              <div class="subtitle">
+                Ada beberapa momen yang sederhana,
+                tapi entah kenapa selalu terasa spesial
+                ketika mengingatnya.
+              </div>
+
+
+              <div class="photo-frame">
+
+                <div class="pin"></div>
+
+                <img
+                  src="assets/photo1.jpg"
+                  alt="Kenangan 1">
+
+                <div class="caption">
+                  one of my favorite moments ♡
+                </div>
+
+              </div>
+
+
+              <div class="note">
+                Hari ini bukan cuma tentang bertambahnya usia.
+                Semoga kamu juga bisa melihat betapa banyak
+                hal baik yang sudah kamu lewati sampai di sini.
+              </div>
+
+
+              <div class="page-number">
+                01
+              </div>
+
             </div>
+
           </div>
-          <div class="back">
+
+
+          <div class="page-face back">
+
             <div class="paper"></div>
+
           </div>
+
         </section>
 
-        <!-- LETTER -->
-        <section class="page" data-page="5">
-          <div class="front">
-            <div class="letter" id="letter">
-              <div class="envelope" id="envelope">
+
+
+        <!-- ==================================================
+             PAGE 2 — PHOTO 2
+        =================================================== -->
+
+        <section
+          class="page"
+          data-index="2">
+
+          <div class="page-face front">
+
+            <div class="paper">
+
+              <div class="kicker">
+                page 02 · keep this
+              </div>
+
+              <div class="title">
+                Simpan momen ini baik-baik
+              </div>
+
+              <div class="subtitle">
+                Karena suatu hari nanti, kita mungkin akan
+                tersenyum saat melihat halaman kecil ini lagi.
+              </div>
+
+
+              <div class="photo-frame">
+
+                <div class="pin"></div>
+
+                <img
+                  src="assets/photo2.jpg"
+                  alt="Kenangan 2">
+
+                <div class="caption">
+                  you make ordinary days brighter ♡
+                </div>
+
+              </div>
+
+
+              <div class="note">
+                Semoga kamu selalu dikelilingi orang-orang
+                yang tulus, hal-hal yang membuatmu tenang,
+                dan alasan-alasan kecil untuk tetap tersenyum.
+              </div>
+
+
+              <div class="page-number">
+                02
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="page-face back">
+
+            <div class="paper"></div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             PAGE 3 — PHOTO 3
+        =================================================== -->
+
+        <section
+          class="page"
+          data-index="3">
+
+          <div class="page-face front">
+
+            <div class="paper">
+
+              <div class="kicker">
+                page 03 · another memory
+              </div>
+
+              <div class="title">
+                Semoga langkahmu selalu baik
+              </div>
+
+              <div class="subtitle">
+                Kalau nanti jalannya terasa panjang,
+                semoga kamu tetap punya cukup keberanian
+                untuk melanjutkannya.
+              </div>
+
+
+              <div class="photo-frame">
+
+                <div class="pin"></div>
+
+                <img
+                  src="assets/photo3.jpg"
+                  alt="Kenangan 3">
+
+                <div class="caption">
+                  more memories to come ♡
+                </div>
+
+              </div>
+
+
+              <div class="note">
+                Aku harap tahun baru dalam hidupmu membawa
+                lebih banyak kesempatan, pengalaman baru,
+                dan cerita yang pantas kamu banggakan.
+              </div>
+
+
+              <div class="page-number">
+                03
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="page-face back">
+
+            <div class="paper"></div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             PAGE 4 — PHOTO 4
+        =================================================== -->
+
+        <section
+          class="page"
+          data-index="4">
+
+          <div class="page-face front">
+
+            <div class="paper">
+
+              <div class="kicker">
+                page 04 · before the letter
+              </div>
+
+              <div class="title">
+                Satu halaman lagi...
+              </div>
+
+              <div class="subtitle">
+                Sebelum sampai ke surat terakhir,
+                aku cuma mau bilang: terima kasih sudah
+                menjadi bagian dari banyak cerita yang aku ingat.
+              </div>
+
+
+              <div class="photo-frame">
+
+                <div class="pin"></div>
+
+                <img
+                  src="assets/photo4.jpg"
+                  alt="Kenangan 4">
+
+                <div class="caption">
+                  and this one too ♡
+                </div>
+
+              </div>
+
+
+              <div class="note">
+                Sekarang, buka halaman terakhir.
+                Ada beberapa hal yang sebenarnya ingin
+                aku sampaikan langsung, tapi kali ini
+                aku tulis di sini.
+              </div>
+
+
+              <div class="page-number">
+                04
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="page-face back">
+
+            <div class="paper"></div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             PAGE 5 — LETTER
+        =================================================== -->
+
+        <section
+          class="page"
+          data-index="5">
+
+          <div class="page-face front">
+
+            <div
+              class="letter"
+              id="letter">
+
+
+              <!-- ENVELOPE -->
+
+              <div
+                class="envelope"
+                id="envelope">
+
                 <div class="envelope-top"></div>
+
+
                 <div class="envelope-body">
-                  <div class="seal">♥</div>
-                  <div class="envelope-kicker">last page · especially for you</div>
-                  <div class="envelope-title">Ada satu surat<br>untuk kamu</div>
-                  <div class="envelope-hint">tap halaman ini untuk membukanya ♡</div>
+
+                  <div class="seal">
+                    ♥
+                  </div>
+
+                  <div class="envelope-kicker">
+                    last page · especially for you
+                  </div>
+
+                  <div class="envelope-title">
+                    Ada satu surat<br>
+                    untuk kamu
+                  </div>
+
+                  <div class="envelope-hint">
+                    tap halaman ini untuk membukanya ♡
+                  </div>
+
                 </div>
+
               </div>
+
+
+              <!-- LETTER -->
+
               <article class="letter-paper">
+
                 <div class="letter-head">
-                  <div class="kicker">a letter for you</div>
-                  <div class="letter-seal">💗</div>
-                  <div class="title">Untuk kamu, di hari ulang tahunmu</div>
+
+                  <div class="kicker">
+                    a letter for you
+                  </div>
+
+                  <div class="letter-seal">
+                    💗
+                  </div>
+
+                  <div class="title">
+                    Untuk kamu, di hari ulang tahunmu
+                  </div>
+
                 </div>
+
+
                 <div class="letter-body">
-                  <p>Selamat ulang tahun buat kamu ♡</p>
-                  <p>Semoga hari ini terasa hangat, sederhana, dan penuh hal-hal kecil yang bikin kamu bahagia. Terima
-                    kasih sudah menjadi seseorang yang punya tempat sendiri di banyak cerita. Semoga kamu tahu bahwa
-                    keberadaanmu benar-benar berarti.</p>
 
-                  <p><strong>Doa yang aku titipkan</strong></p>
-                  <p>Semoga Tuhan selalu menjaga langkahmu, memberi kesehatan, ketenangan, dan kekuatan untuk menghadapi
-                    setiap hal yang datang. Semoga segala urusanmu dipermudah, rezekimu dicukupkan, dan kamu
-                    dipertemukan dengan orang-orang yang tulus. Ketika ada hari yang berat, semoga selalu ada jalan
-                    menuju hal-hal yang membuatmu tenang.</p>
+                  <p>
+                    Selamat ulang tahun buat kamu ♡
+                  </p>
 
-                  <p><strong>Harapan untuk tahun barumu</strong></p>
-                  <p>Aku berharap kamu bisa terus tumbuh tanpa kehilangan versi dirimu yang paling tulus. Semoga ada
-                    lebih banyak kesempatan untuk mencoba, belajar, tertawa, dan menemukan hal-hal yang memang kamu
-                    cari. Semoga tahun ini menyimpan banyak cerita baik yang suatu hari nanti akan kamu kenang dengan
-                    senyum.</p>
 
-                  <p><strong>Just a little something 👀</strong></p>
-                  <p>Kalau kamu sudah sampai di bagian ini, berarti kamu sudah membaca bagian yang paling jujur.
-                    Sebenarnya ada seseorang yang cukup sering memikirkan kamu, cukup senang kalau melihat kamu bahagia,
-                    dan diam-diam berharap bisa tetap ada di beberapa cerita berikutnya.</p>
-                  <p>Kalau kamu masih belum sadar... orangnya mungkin sedang berharap kamu tersenyum setelah membaca
-                    surat ini. ♡</p>
+                  <p>
+                    Semoga hari ini terasa hangat, sederhana,
+                    dan penuh hal-hal kecil yang bikin kamu bahagia.
+                    Terima kasih sudah menjadi seseorang yang punya
+                    tempat sendiri di banyak cerita. Semoga kamu tahu
+                    bahwa keberadaanmu benar-benar berarti.
+                  </p>
 
-                  <p><strong>One thing I'm sorry for</strong></p>
-                  <p>Aku juga mau minta maaf karena sempat nggak membalas chat kamu. Bukan karena aku nggak peduli atau
-                    sengaja mau menjauh. Waktu itu aku justru takut, ga tau mau jawab apa karena aku
-                    orangnya bukan yang bisa ngajak orang buat ngobrol. Jadi aku ga tau mau mulai dari mana, bukannya mau 
-                    cuekin kamu dan ga mau nyoba ngobrol, aku memang orang yang agak susah ngajak orang buat ngbrol,
-                    dan akhirnya malah memilih diam.</p>
-                  <p>Aku tahu diam juga bisa bikin orang lain bertanya-tanya, jadi untuk itu, maaf ya. Seharusnya aku
-                    bisa menyampaikannya dengan lebih baik. Semoga setelah ini semuanya bisa terasa lebih ringan dan
-                    nggak ada salah paham yang perlu dibawa terlalu lama.</p>
 
-                  <div class="signature">Selamat ulang tahun sekali lagi.<br>Semoga semua hal baik menemukan jalan
-                    menuju kamu. ♡</div>
+                  <p>
+                    <strong>
+                      Doa yang aku titipkan
+                    </strong>
+                  </p>
+
+
+                  <p>
+                    Semoga Tuhan selalu menjaga langkahmu,
+                    memberi kesehatan, ketenangan, dan kekuatan
+                    untuk menghadapi setiap hal yang datang.
+                    Semoga segala urusanmu dipermudah, rezekimu
+                    dicukupkan, dan kamu dipertemukan dengan
+                    orang-orang yang tulus. Ketika ada hari yang berat,
+                    semoga selalu ada jalan menuju hal-hal yang
+                    membuatmu tenang.
+                  </p>
+
+
+                  <p>
+                    <strong>
+                      Harapan untuk tahun barumu
+                    </strong>
+                  </p>
+
+
+                  <p>
+                    Aku berharap kamu bisa terus tumbuh tanpa
+                    kehilangan versi dirimu yang paling tulus.
+                    Semoga ada lebih banyak kesempatan untuk mencoba,
+                    belajar, tertawa, dan menemukan hal-hal yang
+                    memang kamu cari. Semoga tahun ini menyimpan
+                    banyak cerita baik yang suatu hari nanti akan
+                    kamu kenang dengan senyum.
+                  </p>
+
+
+                  <p>
+                    <strong>
+                      Just a little something 👀
+                    </strong>
+                  </p>
+
+
+                  <p>
+                    Kalau kamu sudah sampai di bagian ini,
+                    berarti kamu sudah membaca bagian yang paling
+                    jujur. Sebenarnya ada seseorang yang cukup
+                    sering memikirkan kamu, cukup senang kalau
+                    melihat kamu bahagia, dan diam-diam berharap
+                    bisa tetap ada di beberapa cerita berikutnya.
+                  </p>
+
+
+                  <p>
+                    Kalau kamu masih belum sadar...
+                    orangnya mungkin sedang berharap kamu tersenyum
+                    setelah membaca surat ini. ♡
+                  </p>
+
+
+                  <p>
+                    <strong>
+                      One thing I'm sorry for
+                    </strong>
+                  </p>
+
+
+                  <p>
+                    Aku juga mau minta maaf karena sempat nggak
+                    membalas chat kamu. Bukan karena aku nggak peduli
+                    atau sengaja mau menjauh. Waktu itu aku justru
+                    takut, ga tau mau jawab apa karena aku orangnya
+                    bukan yang bisa ngajak orang buat ngobrol.
+                    Jadi aku ga tau mau mulai dari mana, bukannya
+                    mau cuekin kamu dan ga mau nyoba ngobrol,
+                    aku memang orang yang agak susah ngajak orang
+                    buat ngbrol, dan akhirnya malah memilih diam.
+                  </p>
+
+
+                  <p>
+                    Aku tahu diam juga bisa bikin orang lain
+                    bertanya-tanya, jadi untuk itu, maaf ya.
+                    Seharusnya aku bisa menyampaikannya dengan
+                    lebih baik. Semoga setelah ini semuanya bisa
+                    terasa lebih ringan dan nggak ada salah paham
+                    yang perlu dibawa terlalu lama.
+                  </p>
+
+
+                  <div class="signature">
+                    Selamat ulang tahun sekali lagi.<br>
+                    Semoga semua hal baik menemukan jalan
+                    menuju kamu. ♡
+                  </div>
+
                 </div>
+
               </article>
+
             </div>
+
           </div>
-          <div class="back">
+
+
+          <div class="page-face back">
+
             <div class="paper"></div>
+
           </div>
+
         </section>
+
       </div>
     </div>
 
+
+    <!-- =========================
+         CONTROLS
+    ========================== -->
+
     <div class="page-controls">
-      <button class="ctrl" id="prevBtn">← Sebelumnya</button>
-      <button class="ctrl" id="nextBtn">Selanjutnya →</button>
+
+      <button
+        class="ctrl"
+        id="prevBtn">
+        ← Sebelumnya
+      </button>
+
+      <button
+        class="ctrl"
+        id="nextBtn">
+        Selanjutnya →
+      </button>
+
     </div>
 
-    <div class="hint">Tip: tap halaman untuk membalik buku • di halaman terakhir, tap suratnya untuk membuka ♡</div>
+
+    <div class="hint">
+      Tip: tap halaman untuk membalik buku •
+      di halaman terakhir, tap suratnya untuk membuka ♡
+    </div>
+
   </main>
 
-  <audio id="music" src="assets/music.mp3" loop preload="auto"></audio>
+
+  <!-- MUSIC -->
+
+  <audio
+    id="music"
+    src="assets/music.mp3"
+    loop
+    preload="auto">
+  </audio>
+
 
   <script>
-    const pages = [...document.querySelectorAll('.page')];
+
+    /* =========================================
+       BOOK FLIP SYSTEM
+    ========================================= */
+
+    const pages =
+      Array.from(
+        document.querySelectorAll(".page")
+      );
+
     let current = 0;
-    const book = document.getElementById('book');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
+
+    const nextBtn =
+      document.getElementById("nextBtn");
+
+    const prevBtn =
+      document.getElementById("prevBtn");
+
+
+    /*
+      Menentukan urutan z-index.
+
+      Halaman yang sedang terbuka berada
+      paling depan.
+
+      Halaman yang sudah dibalik tetap
+      berada di kiri sebagai tumpukan.
+    */
 
     function renderBook() {
-      pages.forEach((p, i) => p.classList.toggle('flipped', i < current));
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current === pages.length - 1;
-      prevBtn.style.opacity = prevBtn.disabled ? .45 : 1;
-      nextBtn.style.opacity = nextBtn.disabled ? .45 : 1;
+
+      pages.forEach(
+        function(page, index) {
+
+          const isFlipped =
+            index < current;
+
+          page.classList.toggle(
+            "flipped",
+            isFlipped
+          );
+
+
+          if (isFlipped) {
+
+            /*
+              Halaman yang sudah dibalik
+              dibuat bertumpuk dari kiri.
+            */
+
+            page.style.zIndex =
+              String(index + 1);
+
+          } else {
+
+            /*
+              Halaman yang belum dibuka
+              bertumpuk di kanan.
+
+              Halaman aktif berada paling atas.
+            */
+
+            page.style.zIndex =
+              String(
+                pages.length - index + 10
+              );
+
+          }
+
+        }
+      );
+
+
+      prevBtn.disabled =
+        current === 0;
+
+      nextBtn.disabled =
+        current === pages.length - 1;
     }
 
-    function next() {
-      if (current < pages.length - 1) {
+
+    function nextPage() {
+
+      if (
+        current <
+        pages.length - 1
+      ) {
+
         current++;
+
         renderBook();
+
       }
+
     }
 
-    function prev() {
+
+    function previousPage() {
+
       if (current > 0) {
+
         current--;
+
         renderBook();
+
       }
+
     }
 
-    nextBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      next();
-    });
 
-    prevBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      prev();
-    });
+    /* =========================================
+       BUTTONS
+    ========================================= */
 
-    pages.forEach((p, i) => p.addEventListener('click', e => {
-      if (e.target.closest('button,.tab,.secret')) return;
+    nextBtn.addEventListener(
+      "click",
+      function(event) {
 
-      if (i === current) {
-        next();
-      } else if (i < current) {
-        current = i;
+        event.stopPropagation();
+
+        nextPage();
+
       }
+    );
 
-      renderBook();
-    }));
 
-    const letter = document.getElementById('letter');
+    prevBtn.addEventListener(
+      "click",
+      function(event) {
 
-    letter.addEventListener('click', e => {
-      e.stopPropagation();
-      letter.classList.add('opened');
-    });
+        event.stopPropagation();
 
-    const audio = document.getElementById('music');
-    const musicBtn = document.getElementById('musicBtn');
+        previousPage();
+
+      }
+    );
+
+
+    /* =========================================
+       PAGE TAP
+    ========================================= */
+
+    pages.forEach(
+      function(page, index) {
+
+        page.addEventListener(
+          "click",
+          function(event) {
+
+            /*
+              Jangan ikut membalik kalau
+              yang ditekan adalah tombol.
+            */
+
+            if (
+              event.target.closest("button")
+            ) {
+              return;
+            }
+
+
+            /*
+              Kalau halaman yang aktif
+              ditekan → buka halaman berikutnya.
+            */
+
+            if (index === current) {
+
+              /*
+                Khusus halaman surat:
+                klik di envelope ditangani
+                oleh sistem surat.
+              */
+
+              if (
+                index === pages.length - 1 &&
+                event.target.closest("#letter")
+              ) {
+                return;
+              }
+
+              nextPage();
+
+              return;
+            }
+
+
+            /*
+              Kalau halaman yang sudah
+              dibalik ditekan → balik
+              sampai halaman tersebut.
+            */
+
+            if (index < current) {
+
+              current = index;
+
+              renderBook();
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =========================================
+       LETTER
+    ========================================= */
+
+    const letter =
+      document.getElementById("letter");
+
+
+    letter.addEventListener(
+      "click",
+      function(event) {
+
+        event.stopPropagation();
+
+        letter.classList.add("opened");
+
+      }
+    );
+
+
+    /* =========================================
+       MUSIC
+    ========================================= */
+
+    const audio =
+      document.getElementById("music");
+
+    const musicBtn =
+      document.getElementById("musicBtn");
 
     let playing = false;
 
-    musicBtn.addEventListener('click', e => {
-      e.stopPropagation();
 
-      if (playing) {
-        audio.pause();
-        playing = false;
-        musicBtn.textContent = '♫ Play music';
-      } else {
-        audio.play()
-          .then(() => {
-            playing = true;
-            musicBtn.textContent = '❚❚ Music on';
-          })
-          .catch(() => {});
-      }
-    });
+    musicBtn.addEventListener(
+      "click",
+      function(event) {
 
-    document.addEventListener('click', () => {
-      if (!playing) {
-        audio.play()
-          .then(() => {
-            playing = true;
-            musicBtn.textContent = '❚❚ Music on';
-          })
-          .catch(() => {});
+        event.stopPropagation();
+
+
+        if (playing) {
+
+          audio.pause();
+
+          playing = false;
+
+          musicBtn.textContent =
+            "♫ Play music";
+
+        } else {
+
+          audio.play()
+            .then(
+              function() {
+
+                playing = true;
+
+                musicBtn.textContent =
+                  "❚❚ Music on";
+
+              }
+            )
+            .catch(
+              function() {
+
+                /*
+                  Beberapa browser
+                  membutuhkan interaksi
+                  pengguna terlebih dahulu.
+                */
+
+              }
+            );
+
+        }
+
       }
-    }, { once: true });
+    );
+
+
+    /* =========================================
+       PARTICLES
+    ========================================= */
 
     function particle() {
-      const el = document.createElement('span');
 
-      const isHeart = Math.random() > .32;
+      const el =
+        document.createElement("span");
 
-      el.className = isHeart ? 'heart' : 'spark';
 
-      el.textContent = isHeart
-        ? ['♥', '♡', '❤', '💗'][Math.floor(Math.random() * 4)]
-        : ['✦', '✧', '·', '⋆'][Math.floor(Math.random() * 4)];
+      const isHeart =
+        Math.random() > .32;
 
-      el.style.left = (Math.random() * 100) + 'vw';
+
+      el.className =
+        isHeart
+          ? "heart"
+          : "spark";
+
+
+      el.textContent =
+        isHeart
+          ? ["♥","♡","❤","💗"][
+              Math.floor(
+                Math.random() * 4
+              )
+            ]
+          : ["✦","✧","·","⋆"][
+              Math.floor(
+                Math.random() * 4
+              )
+            ];
+
+
+      el.style.left =
+        (Math.random() * 100) + "vw";
+
 
       el.style.setProperty(
-        '--drift',
-        ((Math.random() - .5) * 180) + 'px'
+        "--drift",
+        (
+          (Math.random() - .5) * 180
+        ) + "px"
       );
 
+
       el.style.setProperty(
-        '--rot',
-        ((Math.random() - .5) * 80) + 'deg'
+        "--rot",
+        (
+          (Math.random() - .5) * 80
+        ) + "deg"
       );
+
 
       el.style.animationDuration =
-        (7 + Math.random() * 8) + 's';
+        (
+          7 + Math.random() * 8
+        ) + "s";
+
 
       el.style.animationDelay =
-        (Math.random() * 1.2) + 's';
+        (
+          Math.random() * 1.2
+        ) + "s";
 
-      document.getElementById('particles').appendChild(el);
 
-      setTimeout(() => el.remove(), 17000);
+      document
+        .getElementById("particles")
+        .appendChild(el);
+
+
+      setTimeout(
+        function() {
+
+          el.remove();
+
+        },
+        17000
+      );
+
     }
 
-    setInterval(particle, 420);
 
-    for (let i = 0; i < 10; i++) {
-      setTimeout(particle, i * 180);
+    setInterval(
+      particle,
+      420
+    );
+
+
+    for (
+      let i = 0;
+      i < 10;
+      i++
+    ) {
+
+      setTimeout(
+        particle,
+        i * 180
+      );
+
     }
+
+
+    /* =========================================
+       START
+    ========================================= */
 
     renderBook();
+
   </script>
+
 </body>
 
-</html>
+                  </html>
