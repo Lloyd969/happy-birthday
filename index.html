@@ -14,27 +14,1037 @@
       box-sizing: border-box;
     }
 
-    :root {
-      --pink1: #ffb7cd;
-      --pink2: #f68bb0;
-      --pink3: #d96fa7;
-      --ink: #5c3150;
-      --paper: #fffafc;
-      --shadow: rgba(91, 36, 69, .28);
-    }
-
     html,
     body {
-      margin: 0;
       width: 100%;
       height: 100%;
-      font-family: "DM Sans", sans-serif;
-      color: var(--ink);
+      margin: 0;
       overflow: hidden;
+      font-family: "DM Sans", sans-serif;
+      color: #5c3150;
+    }
+
+    :root {
+      --paper: #fffafc;
     }
 
     body {
       background:
+        radial-gradient(circle at 15% 15%, rgba(255, 255, 255, .55), transparent 22%),
+        radial-gradient(circle at 85% 80%, rgba(255, 255, 255, .35), transparent 24%),
+        linear-gradient(145deg, #ffd4e2 0%, #f7a7c1 34%, #e987b0 67%, #c96ea5 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .16;
+      background-image: radial-gradient(#fff 1px, transparent 1px);
+      background-size: 18px 18px;
+      mix-blend-mode: soft-light;
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart,
+    .spark {
+      position: absolute;
+      bottom: -50px;
+      opacity: 0;
+      animation: floatUp linear forwards;
+      filter: drop-shadow(0 3px 7px rgba(117, 35, 78, .15));
+    }
+
+    .heart {
+      font-size: clamp(14px, 3.8vw, 28px);
+    }
+
+    .spark {
+      font-size: 12px;
+      color: white;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(.75);
+        opacity: 0;
+      }
+
+      12% {
+        opacity: .7;
+      }
+
+      80% {
+        opacity: .55;
+      }
+
+      100% {
+        transform: translate3d(var(--drift), -115vh, 0) rotate(var(--rot)) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 3;
+      height: 62px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      max-width: 980px;
+      margin: auto;
+      color: white;
+    }
+
+    .brand {
+      font-family: Caveat, cursive;
+      font-size: 28px;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(102, 29, 66, .18);
+    }
+
+    .music-btn {
+      border: 1px solid rgba(255, 255, 255, .6);
+      background: rgba(255, 255, 255, .18);
+      color: white;
+      border-radius: 999px;
+      padding: 9px 13px;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .stage {
+      position: relative;
+      z-index: 2;
+      height: calc(100dvh - 62px);
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px 25px;
+      overflow: hidden;
+    }
+
+    .book-wrap {
+      width: min(88vw, 420px);
+      height: min(78vh, 560px);
+      aspect-ratio: 3 / 4;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .book {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 25px 35px rgba(88, 29, 67, .25));
+    }
+
+    #page {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 9px 15px 15px 9px;
+      background: var(--paper);
+      box-shadow: 0 7px 20px rgba(82, 28, 61, .18);
+    }
+
+    #pageSurface {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--paper);
+      border-radius: inherit;
+    }
+
+    #pageSurface.turning {
+      animation: pageIn .42s ease both;
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform: translateX(22px) scale(.985);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    .paper {
+      position: absolute;
+      inset: 0;
+      padding: 25px 22px 26px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(255, 187, 207, .28), transparent 25%),
+        linear-gradient(145deg, #fffdfd, #fff7fa 58%, #fdeef5);
+    }
+
+    .cover {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 25px 22px;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(255, 255, 255, .6), transparent 25%),
+        linear-gradient(150deg, #ffd6e7 0%, #ffadc9 52%, #f783b2 100%);
+      color: white;
+      overflow: hidden;
+    }
+
+    .cover .mini {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: .85;
+    }
+
+    .cover h1 {
+      font-family: Caveat, cursive;
+      font-size: clamp(42px, 12vw, 58px);
+      line-height: .9;
+      margin: 18px 0 10px;
+      text-shadow: 0 3px 12px rgba(91, 28, 63, .28);
+    }
+
+    .cover p {
+      max-width: 260px;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .cover .big-heart {
+      font-size: 62px;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    .corner {
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255, 255, 255, .5);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    .page-number {
+      position: absolute;
+      bottom: 12px;
+      right: 16px;
+      font-size: 11px;
+      opacity: .55;
+    }
+
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #bb5b86;
+      font-weight: 700;
+    }
+
+    .title {
+      font-family: Caveat, cursive;
+      font-size: clamp(30px, 8vw, 40px);
+      line-height: 1;
+      margin: 7px 0 4px;
+      color: #7b3d62;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      line-height: 1.55;
+      opacity: .72;
+      margin-bottom: 14px;
+    }
+
+    .photo-frame {
+      position: relative;
+      display: table;
+      width: fit-content;
+      max-width: 82%;
+      margin: 8px auto 15px;
+      padding: 9px 9px 27px;
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 9px 18px rgba(81, 33, 60, .2);
+      transform: rotate(-1.2deg);
+    }
+
+    .photo-frame:nth-of-type(even) {
+      transform: rotate(1.2deg);
+    }
+
+    .photo-frame img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: clamp(180px, 38vh, 300px);
+      object-fit: contain;
+      border-radius: 1px;
+    }
+
+    .caption {
+      text-align: center;
+      font-family: Caveat, cursive;
+      font-size: 23px;
+      color: #7b3d62;
+      margin-top: 3px;
+    }
+
+    .pin {
+      position: absolute;
+      top: -19px;
+      left: 50%;
+      transform: translateX(-50%) rotate(2deg);
+      width: 31px;
+      height: 31px;
+      background: white;
+      z-index: 4;
+      filter: drop-shadow(0 3px 4px rgba(0, 0, 0, .18));
+    }
+
+    .pin::before {
+      content: "♥";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: #f2b7ca;
+      font-size: 18px;
+    }
+
+    .pin::after {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 9px;
+      background: #ddd;
+      left: 50%;
+      top: 26px;
+      transform: translateX(-50%);
+      border-radius: 3px;
+    }
+
+    .note {
+      margin: 5px auto 0;
+      padding: 9px 11px;
+      background: #fff;
+      border-left: 3px solid #eea1bc;
+      border-radius: 5px;
+      box-shadow: 0 5px 12px rgba(90, 35, 68, .08);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .page-controls {
+      position: absolute;
+      left: 50%;
+      bottom: 32px;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      gap: 10px;
+      white-space: nowrap;
+    }
+
+    .ctrl {
+      border: 0;
+      background: rgba(255, 255, 255, .82);
+      color: #743a5d;
+      border-radius: 999px;
+      padding: 9px 14px;
+      box-shadow: 0 5px 14px rgba(82, 29, 61, .16);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .hint {
+      color: white;
+      font-size: 12px;
+      opacity: .85;
+      margin-top: 47px;
+      text-align: center;
+    }
+
+    .letter {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: linear-gradient(145deg, #ffd9e7, #f7a0bf 52%, #e98bb3);
+    }
+
+    .envelope {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .55s ease, transform .65s ease;
+      z-index: 3;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(255, 255, 255, .45), transparent 25%),
+        linear-gradient(145deg, #ffd4e3, #f29abb 55%, #dc78a9);
+    }
+
+    .envelope-body {
+      width: 78%;
+      min-height: 58%;
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, .24);
+      border: 1px solid rgba(255, 255, 255, .62);
+      box-shadow:
+        0 20px 35px rgba(92, 30, 68, .18),
+        inset 0 1px rgba(255, 255, 255, .55);
+      backdrop-filter: blur(5px);
+    }
+
+    .envelope-top {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 42%;
+      background: rgba(255, 255, 255, .12);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      pointer-events: none;
+    }
+
+    .seal {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      color: #e889ad;
+      font-size: 30px;
+      box-shadow: 0 7px 16px rgba(94, 31, 69, .16);
+      margin-bottom: 18px;
+    }
+
+    .envelope-kicker {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: 700;
+      opacity: .9;
+    }
+
+    .envelope-title {
+      font-family: Caveat, cursive;
+      color: #fff;
+      font-size: 43px;
+      line-height: 1.02;
+      margin: 13px 0;
+      text-shadow: 0 2px 8px rgba(104, 34, 72, .18);
+    }
+
+    .envelope-hint {
+      font-size: 11px;
+      color: #fff;
+      opacity: .9;
+      margin-top: 10px;
+    }
+
+    .letter-paper {
+      position: absolute;
+      inset: 8px;
+      background: #fffafc;
+      border-radius: 12px;
+      box-shadow: 0 14px 30px rgba(82, 28, 61, .2);
+      padding: 15px 13px 13px;
+      transform: translateY(104%);
+      transition: transform .7s cubic-bezier(.2, .75, .2, 1);
+      z-index: 4;
+      overflow: hidden;
+    }
+
+    .letter.opened .envelope {
+      opacity: 0;
+      transform: scale(.96);
+      pointer-events: none;
+    }
+
+    .letter.opened .letter-paper {
+      transform: translateY(0);
+    }
+
+    .letter-head {
+      text-align: center;
+      padding: 3px 5px 8px;
+    }
+
+    .letter-head .title {
+      font-size: 35px;
+      margin-top: 4px;
+    }
+
+    .letter-seal {
+      font-size: 26px;
+      margin: 1px 0;
+    }
+
+    .letter-body {
+      height: calc(100% - 105px);
+      padding: 12px 13px;
+      border-radius: 10px;
+      background: rgba(255, 240, 247, .65);
+      box-shadow: inset 0 0 0 1px rgba(172, 86, 123, .1);
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .letter-body p {
+      font-size: 12.5px;
+      line-height: 1.72;
+      margin: 0 0 11px;
+    }
+
+    .letter-body strong {
+      font-family: Caveat, cursive;
+      font-size: 23px;
+      color: #8b426a;
+    }
+
+    .letter-body .signature {
+      font-family: Caveat, cursive;
+      font-size: 22px;
+      text-align: right;
+      margin-top: 14px;
+      color: #7b3d62;
+    }
+
+    @media (max-width: 360px) {
+      .paper {
+        padding: 19px 16px;
+      }
+
+      .page-controls {
+        bottom: 28px;
+      }
+
+      .hint {
+        margin-top: 43px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="particles"></div>
+
+  <header class="topbar">
+    <div class="brand">a little birthday book ♡</div>
+    <button class="music-btn" id="musicBtn">♫ Play music</button>
+  </header>
+
+  <main class="stage">
+
+    <div class="book-wrap">
+      <div class="book">
+        <div id="page">
+          <div id="pageSurface"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-controls">
+      <button class="ctrl" id="prevBtn">← Sebelumnya</button>
+      <button class="ctrl" id="nextBtn">Selanjutnya →</button>
+    </div>
+
+    <div class="hint">
+      Tip: tap halaman untuk membalik buku • di halaman terakhir, tap suratnya untuk membuka ♡
+    </div>
+
+  </main>
+
+  <audio id="music" src="assets/music.mp3" loop preload="auto"></audio>
+
+  <script>
+    const pageSurface = document.getElementById("pageSurface");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+
+    let current = 0;
+    let letterOpened = false;
+
+    const pages = [
+
+      /* COVER */
+      `
+        <div class="cover">
+          <div class="corner"></div>
+
+          <div class="mini">
+            a tiny book made especially for you
+          </div>
+
+          <div class="big-heart">♡</div>
+
+          <h1>
+            Happy<br>Birthday
+          </h1>
+
+          <p>
+            Empat halaman kecil, empat foto, dan banyak hal yang ingin aku sampaikan.
+          </p>
+
+          <div style="font-family:Caveat;font-size:25px;margin-top:12px">
+            open me →
+          </div>
+        </div>
+      `,
+
+      /* PHOTO 1 */
+      `
+        <div class="paper">
+          <div class="kicker">
+            page 01 · little memory
+          </div>
+
+          <div class="title">
+            Hari yang indah dimulai dari kamu
+          </div>
+
+          <div class="subtitle">
+            Ada beberapa momen yang sederhana, tapi entah kenapa selalu terasa spesial ketika mengingatnya.
+          </div>
+
+          <div class="photo-frame">
+            <div class="pin"></div>
+
+            <img src="assets/photo1.jpg" alt="Kenangan 1">
+
+            <div class="caption">
+              one of my favorite moments ♡
+            </div>
+          </div>
+
+          <div class="note">
+            Hari ini bukan cuma tentang bertambahnya usia. Semoga kamu juga bisa melihat betapa banyak hal baik yang sudah kamu lewati sampai di sini.
+          </div>
+
+          <div class="page-number">
+            01
+          </div>
+        </div>
+      `,
+
+      /* PHOTO 2 */
+      `
+        <div class="paper">
+          <div class="kicker">
+            page 02 · keep this
+          </div>
+
+          <div class="title">
+            Simpan momen ini baik-baik
+          </div>
+
+          <div class="subtitle">
+            Karena suatu hari nanti, kita mungkin akan tersenyum saat melihat halaman kecil ini lagi.
+          </div>
+
+          <div class="photo-frame">
+            <div class="pin"></div>
+
+            <img src="assets/photo2.jpg" alt="Kenangan 2">
+
+            <div class="caption">
+              you make ordinary days brighter ♡
+            </div>
+          </div>
+
+          <div class="note">
+            Semoga kamu selalu dikelilingi orang-orang yang tulus, hal-hal yang membuatmu tenang, dan alasan-alasan kecil untuk tetap tersenyum.
+          </div>
+
+          <div class="page-number">
+            02
+          </div>
+        </div>
+      `,
+
+      /* PHOTO 3 */
+      `
+        <div class="paper">
+          <div class="kicker">
+            page 03 · another memory
+          </div>
+
+          <div class="title">
+            Semoga langkahmu selalu baik
+          </div>
+
+          <div class="subtitle">
+            Kalau nanti jalannya terasa panjang, semoga kamu tetap punya cukup keberanian untuk melanjutkannya.
+          </div>
+
+          <div class="photo-frame">
+            <div class="pin"></div>
+
+            <img src="assets/photo3.jpg" alt="Kenangan 3">
+
+            <div class="caption">
+              more memories to come ♡
+            </div>
+          </div>
+
+          <div class="note">
+            Aku harap tahun baru dalam hidupmu membawa lebih banyak kesempatan, pengalaman baru, dan cerita yang pantas kamu banggakan.
+          </div>
+
+          <div class="page-number">
+            03
+          </div>
+        </div>
+      `,
+
+      /* PHOTO 4 */
+      `
+        <div class="paper">
+          <div class="kicker">
+            page 04 · before the letter
+          </div>
+
+          <div class="title">
+            Satu halaman lagi...
+          </div>
+
+          <div class="subtitle">
+            Sebelum sampai ke surat terakhir, aku cuma mau bilang: terima kasih sudah menjadi bagian dari banyak cerita yang aku ingat.
+          </div>
+
+          <div class="photo-frame">
+            <div class="pin"></div>
+
+            <img src="assets/photo4.jpg" alt="Kenangan 4">
+
+            <div class="caption">
+              and this one too ♡
+            </div>
+          </div>
+
+          <div class="note">
+            Sekarang, buka halaman terakhir. Ada beberapa hal yang sebenarnya ingin aku sampaikan langsung, tapi kali ini aku tulis di sini.
+          </div>
+
+          <div class="page-number">
+            04
+          </div>
+        </div>
+      `,
+
+      /* LETTER */
+      `
+        <div class="letter ${letterOpened ? "opened" : ""}" id="letter">
+
+          <div class="envelope" id="envelope">
+            <div class="envelope-top"></div>
+
+            <div class="envelope-body">
+
+              <div class="seal">
+                ♥
+              </div>
+
+              <div class="envelope-kicker">
+                last page · especially for you
+              </div>
+
+              <div class="envelope-title">
+                Ada satu surat<br>untuk kamu
+              </div>
+
+              <div class="envelope-hint">
+                tap halaman ini untuk membukanya ♡
+              </div>
+
+            </div>
+          </div>
+
+          <article class="letter-paper">
+
+            <div class="letter-head">
+
+              <div class="kicker">
+                a letter for you
+              </div>
+
+              <div class="letter-seal">
+                💗
+              </div>
+
+              <div class="title">
+                Untuk kamu, di hari ulang tahunmu
+              </div>
+
+            </div>
+
+            <div class="letter-body">
+
+              <p>
+                Selamat ulang tahun buat kamu ♡
+              </p>
+
+              <p>
+                Semoga hari ini terasa hangat, sederhana, dan penuh hal-hal kecil yang bikin kamu bahagia. Terima kasih sudah menjadi seseorang yang punya tempat sendiri di banyak cerita. Semoga kamu tahu bahwa keberadaanmu benar-benar berarti.
+              </p>
+
+              <p>
+                <strong>Doa yang aku titipkan</strong>
+              </p>
+
+              <p>
+                Semoga Tuhan selalu menjaga langkahmu, memberi kesehatan, ketenangan, dan kekuatan untuk menghadapi setiap hal yang datang. Semoga segala urusanmu dipermudah, rezekimu dicukupkan, dan kamu dipertemukan dengan orang-orang yang tulus. Ketika ada hari yang berat, semoga selalu ada jalan menuju hal-hal yang membuatmu tenang.
+              </p>
+
+              <p>
+                <strong>Harapan untuk tahun barumu</strong>
+              </p>
+
+              <p>
+                Aku berharap kamu bisa terus tumbuh tanpa kehilangan versi dirimu yang paling tulus. Semoga ada lebih banyak kesempatan untuk mencoba, belajar, tertawa, dan menemukan hal-hal yang memang kamu cari. Semoga tahun ini menyimpan banyak cerita baik yang suatu hari nanti akan kamu kenang dengan senyum.
+              </p>
+
+              <p>
+                <strong>Just a little something 👀</strong>
+              </p>
+
+              <p>
+                Kalau kamu sudah sampai di bagian ini, berarti kamu sudah membaca bagian yang paling jujur. Sebenarnya ada seseorang yang cukup sering memikirkan kamu, cukup senang kalau melihat kamu bahagia, dan diam-diam berharap bisa tetap ada di beberapa cerita berikutnya.
+              </p>
+
+              <p>
+                Kalau kamu masih belum sadar... orangnya mungkin sedang berharap kamu tersenyum setelah membaca surat ini. ♡
+              </p>
+
+              <p>
+                <strong>One thing I'm sorry for</strong>
+              </p>
+
+              <p>
+                Aku juga mau minta maaf karena sempat nggak membalas chat kamu. Bukan karena aku nggak peduli atau sengaja mau menjauh. Waktu itu aku justru takut, ga tau mau jawab apa karena aku orangnya bukan yang bisa ngajak orang buat ngobrol. Jadi aku ga tau mau mulai dari mana, bukannya mau cuekin kamu dan ga mau nyoba ngobrol, aku memang orang yang agak susah ngajak orang buat ngbrol, dan akhirnya malah memilih diam.
+              </p>
+
+              <p>
+                Aku tahu diam juga bisa bikin orang lain bertanya-tanya, jadi untuk itu, maaf ya. Seharusnya aku bisa menyampaikannya dengan lebih baik. Semoga setelah ini semuanya bisa terasa lebih ringan dan nggak ada salah paham yang perlu dibawa terlalu lama.
+              </p>
+
+              <div class="signature">
+                Selamat ulang tahun sekali lagi.<br>
+                Semoga semua hal baik menemukan jalan menuju kamu. ♡
+              </div>
+
+            </div>
+          </article>
+
+        </div>
+      `
+    ];
+
+    function updateButtons() {
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === pages.length - 1;
+
+      prevBtn.style.opacity = prevBtn.disabled ? ".45" : "1";
+      nextBtn.style.opacity = nextBtn.disabled ? ".45" : "1";
+    }
+
+    function renderPage(animation = true) {
+      pageSurface.classList.remove("turning");
+
+      pageSurface.innerHTML = pages[current];
+
+      if (animation) {
+        void pageSurface.offsetWidth;
+        pageSurface.classList.add("turning");
+      }
+
+      updateButtons();
+
+      const letter = document.getElementById("letter");
+
+      if (letter) {
+        letter.addEventListener("click", function (event) {
+          event.stopPropagation();
+
+          if (!letterOpened) {
+            letterOpened = true;
+            letter.classList.add("opened");
+          }
+        });
+      }
+    }
+
+    function nextPage() {
+      if (current < pages.length - 1) {
+        current++;
+        renderPage();
+      }
+    }
+
+    function previousPage() {
+      if (current > 0) {
+        current--;
+        renderPage();
+      }
+    }
+
+    nextBtn.addEventListener("click", function (event) {
+      event.stopPropagation();
+      nextPage();
+    });
+
+    prevBtn.addEventListener("click", function (event) {
+      event.stopPropagation();
+      previousPage();
+    });
+
+    let pointerStartX = 0;
+    let pointerStartY = 0;
+    let pointerMoved = false;
+
+    pageSurface.addEventListener("pointerdown", function (event) {
+      pointerStartX = event.clientX;
+      pointerStartY = event.clientY;
+      pointerMoved = false;
+    });
+
+    pageSurface.addEventListener("pointermove", function (event) {
+      const dx = Math.abs(event.clientX - pointerStartX);
+      const dy = Math.abs(event.clientY - pointerStartY);
+
+      if (dx > 8 || dy > 8) {
+        pointerMoved = true;
+      }
+    });
+
+    pageSurface.addEventListener("pointerup", function (event) {
+      if (pointerMoved) return;
+
+      if (event.target.closest(".letter-body")) {
+        return;
+      }
+
+      if (event.target.closest(".letter")) {
+        return;
+      }
+
+      if (event.target.closest("button")) {
+        return;
+      }
+
+      nextPage();
+    });
+
+    const audio = document.getElementById("music");
+    const musicBtn = document.getElementById("musicBtn");
+
+    let playing = false;
+
+    musicBtn.addEventListener("click", function (event) {
+      event.stopPropagation();
+
+      if (playing) {
+        audio.pause();
+        playing = false;
+        musicBtn.textContent = "♫ Play music";
+      } else {
+        audio.play()
+          .then(function () {
+            playing = true;
+            musicBtn.textContent = "❚❚ Music on";
+          })
+          .catch(function () {});
+      }
+    });
+
+    function particle() {
+      const el = document.createElement("span");
+      const isHeart = Math.random() > .32;
+
+      el.className = isHeart ? "heart" : "spark";
+
+      el.textContent = isHeart
+        ? ["♥", "♡", "❤", "💗"][Math.floor(Math.random() * 4)]
+        : ["✦", "✧", "·", "⋆"][Math.floor(Math.random() * 4)];
+
+      el.style.left = Math.random() * 100 + "vw";
+
+      el.style.setProperty(
+        "--drift",
+        (Math.random() - .5) * 180 + "px"
+      );
+
+      el.style.setProperty(
+        "--rot",
+        (Math.random() - .5) * 80 + "deg"
+      );
+
+      el.style.animationDuration =
+        7 + Math.random() * 8 + "s";
+
+      el.style.animationDelay =
+        Math.random() * 1.2 + "s";
+
+      document.getElementById("particles").appendChild(el);
+
+      setTimeout(function () {
+        el.remove();
+      }, 17000);
+    }
+
+    setInterval(particle, 420);
+
+    for (let i = 0; i < 10; i++) {
+      setTimeout(particle, i * 180);
+    }
+
+    renderPage(false);
+  </script>
+
+</body>
+</html>      background:
         radial-gradient(circle at 15% 15%, rgba(255, 255, 255, .55), transparent 22%),
         radial-gradient(circle at 85% 80%, rgba(255, 255, 255, .35), transparent 24%),
         linear-gradient(145deg, #ffd4e2 0%, #f7a7c1 34%, #e987b0 67%, #c96ea5 100%);
