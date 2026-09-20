@@ -292,8 +292,7 @@
     .photo-frame img {
       display: block;
       width: 100%;
-      height: auto;
-      max-height: 330px;
+      height: clamp(220px, 33vh, 300px);
       object-fit: contain;
       border-radius: 1px
     }
@@ -341,14 +340,14 @@
     }
 
     .note {
-      margin: 8px auto 0;
-      padding: 11px 13px;
+      margin: 5px auto 0;
+      padding: 9px 11px;
       background: #fff;
       border-left: 3px solid #eea1bc;
       border-radius: 5px;
       box-shadow: 0 5px 12px rgba(90, 35, 68, .08);
-      font-size: 12px;
-      line-height: 1.55;
+      font-size: 11px;
+      line-height: 1.45;
     }
 
     .page-controls {
