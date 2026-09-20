@@ -138,7 +138,7 @@
 
     .book-wrap {
       width: min(92vw, 420px);
-      height: min(82vh, 746px);
+      height: min(88vh, 700px);
       perspective: 1800px;
       position: relative
     }
@@ -292,8 +292,9 @@
     .photo-frame img {
       display: block;
       width: 100%;
-      height: clamp(250px, 44vh, 410px);
-      object-fit: cover;
+      height: auto;
+      max-height: 330px;
+      object-fit: contain;
       border-radius: 1px
     }
 
