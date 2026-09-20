@@ -591,9 +591,17 @@
     .page.flipped:nth-child(5) {
       z-index: 5
     }
+    
      @media (max-width: 360px) {
        .paper {
          padding: 19px 16px:
+       }
+     }
+    
+     @media (min-width: 768px) {
+       .book-wrap {
+         width: min(42opx, 70vw);
+         height: min(78vh, 560px);
        }
      }
   </style>
