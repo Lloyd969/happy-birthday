@@ -63,7 +63,6 @@
       mix-blend-mode: soft-light;
     }
 
-
     /* =========================
        PARTICLES
     ========================== */
@@ -126,7 +125,6 @@
       }
     }
 
-
     /* =========================
        TOP BAR
     ========================== */
@@ -175,7 +173,6 @@
       font-weight: 600;
     }
 
-
     /* =========================
        STAGE
     ========================== */
@@ -184,34 +181,33 @@
       position: relative;
       z-index: 2;
 
+      width: 100%;
       height: calc(100vh - 70px);
 
       display: flex;
-      flex-direction: column;
-
       align-items: center;
       justify-content: center;
 
-      padding: 8px 16px 30px;
+      padding: 0 16px;
     }
-
 
     /* =========================
        BOOK
     ========================== */
 
     .book-wrap {
-      width: min(88vw, 420px);
+      position: relative;
 
+      width: min(88vw, 420px);
       height: min(78vh, 560px);
 
       aspect-ratio: 3 / 4;
 
       perspective: 1800px;
 
-      position: relative;
-
       flex-shrink: 0;
+
+      margin: 0 auto;
     }
 
     .book {
@@ -229,9 +225,8 @@
         );
     }
 
-
     /* =========================
-       ORIGINAL 3D PAGE
+       3D PAGE FLIP
     ========================== */
 
     .page {
@@ -258,9 +253,6 @@
 
       overflow: visible;
 
-      /*
-        Penting untuk efek 3D.
-      */
       backface-visibility: visible;
     }
 
@@ -268,7 +260,6 @@
       transform:
         rotateY(-180deg);
     }
-
 
     /* =========================
        FRONT & BACK
@@ -308,7 +299,6 @@
         );
     }
 
-
     /* =========================
        PAPER
     ========================== */
@@ -337,7 +327,6 @@
           #fdeef5
         );
     }
-
 
     /* =========================
        COVER
@@ -431,7 +420,6 @@
       pointer-events: none;
     }
 
-
     /* =========================
        TEXT
     ========================== */
@@ -482,7 +470,6 @@
 
       margin-bottom: 14px;
     }
-
 
     /* =========================
        PHOTO
@@ -542,7 +529,6 @@
 
       margin-top: 3px;
     }
-
 
     /* =========================
        PIN
@@ -607,7 +593,6 @@
       border-radius: 3px;
     }
 
-
     /* =========================
        NOTE
     ========================== */
@@ -635,7 +620,6 @@
       line-height: 1.45;
     }
 
-
     /* =========================
        CONTROLS
     ========================== */
@@ -644,7 +628,6 @@
       position: absolute;
 
       left: 50%;
-
       bottom: -54px;
 
       transform:
@@ -688,17 +671,24 @@
     }
 
     .hint {
+      position: absolute;
+
+      left: 50%;
+      bottom: -88px;
+
+      transform:
+        translateX(-50%);
+
       color: white;
 
       font-size: 12px;
 
       opacity: .85;
 
-      margin-top: 70px;
-
       text-align: center;
-    }
 
+      width: max-content;
+    }
 
     /* =========================
        LETTER
@@ -876,7 +866,6 @@
       margin-top: 10px;
     }
 
-
     /* =========================
        LETTER PAPER
     ========================== */
@@ -993,9 +982,8 @@
       color: #7b3d62;
     }
 
-
     /* =========================
-       ORIGINAL PAGE STACK
+       PAGE STACK
     ========================== */
 
     .page:nth-child(1) {
@@ -1022,12 +1010,6 @@
       z-index: 1;
     }
 
-
-    /*
-      Halaman yang sudah dibalik
-      turun ke belakang secara bertahap.
-    */
-
     .page.flipped:nth-child(1) {
       z-index: 1;
     }
@@ -1047,7 +1029,6 @@
     .page.flipped:nth-child(5) {
       z-index: 5;
     }
-
 
     /* =========================
        SMALL SCREEN
@@ -1090,9 +1071,7 @@
   <div id="particles"></div>
 
 
-  <!-- =========================
-       TOP BAR
-  ========================== -->
+  <!-- TOP BAR -->
 
   <header class="topbar">
 
@@ -1109,9 +1088,7 @@
   </header>
 
 
-  <!-- =========================
-       BOOK
-  ========================== -->
+  <!-- BOOK -->
 
   <main class="stage">
 
@@ -1120,9 +1097,7 @@
       <div class="book" id="book">
 
 
-        <!-- =========================
-             COVER
-        ========================== -->
+        <!-- COVER -->
 
         <section
           class="page"
@@ -1160,20 +1135,14 @@
 
           </div>
 
-
           <div class="back">
-
             <div class="paper"></div>
-
           </div>
 
         </section>
 
 
-
-        <!-- =========================
-             PHOTO 1
-        ========================== -->
+        <!-- PHOTO 1 -->
 
         <section
           class="page"
@@ -1197,7 +1166,6 @@
                 mengingatnya.
               </div>
 
-
               <div class="photo-frame">
 
                 <div class="pin"></div>
@@ -1212,13 +1180,11 @@
 
               </div>
 
-
               <div class="note">
                 Hari ini bukan cuma tentang bertambahnya usia.
                 Semoga kamu juga bisa melihat betapa banyak
                 hal baik yang sudah kamu lewati sampai di sini.
               </div>
-
 
               <div class="page-number">
                 01
@@ -1228,20 +1194,14 @@
 
           </div>
 
-
           <div class="back">
-
             <div class="paper"></div>
-
           </div>
 
         </section>
 
 
-
-        <!-- =========================
-             PHOTO 2
-        ========================== -->
+        <!-- PHOTO 2 -->
 
         <section
           class="page"
@@ -1264,7 +1224,6 @@
                 tersenyum saat melihat halaman kecil ini lagi.
               </div>
 
-
               <div class="photo-frame">
 
                 <div class="pin"></div>
@@ -1279,13 +1238,11 @@
 
               </div>
 
-
               <div class="note">
                 Semoga kamu selalu dikelilingi orang-orang
                 yang tulus, hal-hal yang membuatmu tenang,
                 dan alasan-alasan kecil untuk tetap tersenyum.
               </div>
-
 
               <div class="page-number">
                 02
@@ -1295,20 +1252,14 @@
 
           </div>
 
-
           <div class="back">
-
             <div class="paper"></div>
-
           </div>
 
         </section>
 
 
-
-        <!-- =========================
-             PHOTO 3
-        ========================== -->
+        <!-- PHOTO 3 -->
 
         <section
           class="page"
@@ -1332,7 +1283,6 @@
                 untuk melanjutkannya.
               </div>
 
-
               <div class="photo-frame">
 
                 <div class="pin"></div>
@@ -1347,13 +1297,11 @@
 
               </div>
 
-
               <div class="note">
                 Aku harap tahun baru dalam hidupmu membawa
                 lebih banyak kesempatan, pengalaman baru,
                 dan cerita yang pantas kamu banggakan.
               </div>
-
 
               <div class="page-number">
                 03
@@ -1363,20 +1311,14 @@
 
           </div>
 
-
           <div class="back">
-
             <div class="paper"></div>
-
           </div>
 
         </section>
 
 
-
-        <!-- =========================
-             PHOTO 4
-        ========================== -->
+        <!-- PHOTO 4 -->
 
         <section
           class="page"
@@ -1400,7 +1342,6 @@
                 menjadi bagian dari banyak cerita yang aku ingat.
               </div>
 
-
               <div class="photo-frame">
 
                 <div class="pin"></div>
@@ -1415,13 +1356,11 @@
 
               </div>
 
-
               <div class="note">
                 Sekarang, buka halaman terakhir.
                 Ada beberapa hal yang sebenarnya ingin aku
                 sampaikan langsung, tapi kali ini aku tulis di sini.
               </div>
-
 
               <div class="page-number">
                 04
@@ -1431,20 +1370,14 @@
 
           </div>
 
-
           <div class="back">
-
             <div class="paper"></div>
-
           </div>
 
         </section>
 
 
-
-        <!-- =========================
-             LETTER
-        ========================== -->
+        <!-- LETTER -->
 
         <section
           class="page"
@@ -1456,15 +1389,11 @@
               class="letter"
               id="letter">
 
-
-              <!-- ENVELOPE -->
-
               <div
                 class="envelope"
                 id="envelope">
 
                 <div class="envelope-top"></div>
-
 
                 <div class="envelope-body">
 
@@ -1489,8 +1418,6 @@
 
               </div>
 
-
-              <!-- LETTER PAPER -->
 
               <article class="letter-paper">
 
@@ -1517,7 +1444,6 @@
                     Selamat ulang tahun buat kamu ♡
                   </p>
 
-
                   <p>
                     Semoga hari ini terasa hangat, sederhana,
                     dan penuh hal-hal kecil yang bikin kamu bahagia.
@@ -1526,13 +1452,11 @@
                     bahwa keberadaanmu benar-benar berarti.
                   </p>
 
-
                   <p>
                     <strong>
                       Doa yang aku titipkan
                     </strong>
                   </p>
-
 
                   <p>
                     Semoga Tuhan selalu menjaga langkahmu,
@@ -1545,13 +1469,11 @@
                     membuatmu tenang.
                   </p>
 
-
                   <p>
                     <strong>
                       Harapan untuk tahun barumu
                     </strong>
                   </p>
-
 
                   <p>
                     Aku berharap kamu bisa terus tumbuh tanpa
@@ -1563,13 +1485,11 @@
                     kamu kenang dengan senyum.
                   </p>
 
-
                   <p>
                     <strong>
                       Just a little something 👀
                     </strong>
                   </p>
-
 
                   <p>
                     Kalau kamu sudah sampai di bagian ini,
@@ -1580,20 +1500,17 @@
                     bisa tetap ada di beberapa cerita berikutnya.
                   </p>
 
-
                   <p>
                     Kalau kamu masih belum sadar...
                     orangnya mungkin sedang berharap kamu tersenyum
                     setelah membaca surat ini. ♡
                   </p>
 
-
                   <p>
                     <strong>
                       One thing I'm sorry for
                     </strong>
                   </p>
-
 
                   <p>
                     Aku juga mau minta maaf karena sempat nggak
@@ -1607,7 +1524,6 @@
                     dan akhirnya malah memilih diam.
                   </p>
 
-
                   <p>
                     Aku tahu diam juga bisa bikin orang lain
                     bertanya-tanya, jadi untuk itu, maaf ya.
@@ -1616,7 +1532,6 @@
                     terasa lebih ringan dan nggak ada salah paham
                     yang perlu dibawa terlalu lama.
                   </p>
-
 
                   <div class="signature">
                     Selamat ulang tahun sekali lagi.<br>
@@ -1632,11 +1547,8 @@
 
           </div>
 
-
           <div class="back">
-
             <div class="paper"></div>
-
           </div>
 
         </section>
@@ -1645,9 +1557,7 @@
     </div>
 
 
-    <!-- =========================
-         CONTROLS
-    ========================== -->
+    <!-- CONTROLS -->
 
     <div class="page-controls">
 
@@ -1674,9 +1584,7 @@
   </main>
 
 
-  <!-- =========================
-       MUSIC
-  ========================== -->
+  <!-- MUSIC -->
 
   <audio
     id="music"
@@ -1699,23 +1607,12 @@
 
     let current = 0;
 
-
     const nextBtn =
       document.getElementById("nextBtn");
 
     const prevBtn =
       document.getElementById("prevBtn");
 
-
-    /*
-      Mengatur posisi setiap halaman.
-
-      Halaman yang belum dibuka:
-      berada di depan sesuai urutannya.
-
-      Halaman yang sudah dibalik:
-      tetap berada di belakang.
-    */
 
     function renderBook() {
 
@@ -1730,23 +1627,11 @@
         }
       );
 
-
       prevBtn.disabled =
         current === 0;
 
       nextBtn.disabled =
         current === pages.length - 1;
-
-
-      prevBtn.style.opacity =
-        prevBtn.disabled
-          ? ".45"
-          : "1";
-
-      nextBtn.style.opacity =
-        nextBtn.disabled
-          ? ".45"
-          : "1";
     }
 
 
@@ -1760,9 +1645,7 @@
         current++;
 
         renderBook();
-
       }
-
     }
 
 
@@ -1773,9 +1656,7 @@
         current--;
 
         renderBook();
-
       }
-
     }
 
 
@@ -1790,7 +1671,6 @@
         event.stopPropagation();
 
         nextPage();
-
       }
     );
 
@@ -1802,7 +1682,6 @@
         event.stopPropagation();
 
         previousPage();
-
       }
     );
 
@@ -1825,17 +1704,7 @@
             }
 
 
-            /*
-              Kalau halaman aktif
-              ditekan → lanjut.
-            */
-
             if (index === current) {
-
-              /*
-                Halaman terakhir memiliki
-                sistem buka surat sendiri.
-              */
 
               if (
                 index === pages.length - 1 &&
@@ -1850,17 +1719,11 @@
             }
 
 
-            /*
-              Kalau halaman yang sudah
-              dilewati ditekan → kembali.
-            */
-
             if (index < current) {
 
               current = index;
 
               renderBook();
-
             }
 
           }
@@ -1885,7 +1748,6 @@
         event.stopPropagation();
 
         letter.classList.add("opened");
-
       }
     );
 
@@ -1909,7 +1771,6 @@
 
         event.stopPropagation();
 
-
         if (playing) {
 
           audio.pause();
@@ -1929,13 +1790,11 @@
 
                 musicBtn.textContent =
                   "❚❚ Music on";
-
               }
             )
             .catch(
               function() {}
             );
-
         }
 
       }
@@ -1951,16 +1810,13 @@
       const el =
         document.createElement("span");
 
-
       const isHeart =
         Math.random() > .32;
-
 
       el.className =
         isHeart
           ? "heart"
           : "spark";
-
 
       el.textContent =
         isHeart
@@ -1975,10 +1831,8 @@
               )
             ];
 
-
       el.style.left =
         (Math.random() * 100) + "vw";
-
 
       el.style.setProperty(
         "--drift",
@@ -1987,7 +1841,6 @@
         ) + "px"
       );
 
-
       el.style.setProperty(
         "--rot",
         (
@@ -1995,33 +1848,26 @@
         ) + "deg"
       );
 
-
       el.style.animationDuration =
         (
           7 + Math.random() * 8
         ) + "s";
-
 
       el.style.animationDelay =
         (
           Math.random() * 1.2
         ) + "s";
 
-
       document
         .getElementById("particles")
         .appendChild(el);
 
-
       setTimeout(
         function() {
-
           el.remove();
-
         },
         17000
       );
-
     }
 
 
@@ -2041,7 +1887,6 @@
         particle,
         i * 180
       );
-
     }
 
 
